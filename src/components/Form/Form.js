@@ -1,12 +1,13 @@
+import "./FormStyle.css";
 
 const Form = () => {
-    return (<div>
-        <label htmlFor="search">Поиск по названию</label>
-        <input id="search" placeholder="Начни вводить" />
-        <button type="button">Все</button>
-        <button type="button">Выполненные</button>
-        <button type="button">Удалённые</button>
-    </div>);
-};
+    return (
+        <div className="formContainer">
+            <label htmlFor="search">Новое задание</label>
+            <input id="search" placeholder="Название" />
+            <button type="button">Создать</button>
+        </div>
+    )
+}
 
 export default Form;

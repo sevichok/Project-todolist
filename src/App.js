@@ -1,27 +1,16 @@
 import Header from "./components/Header";
-import Form from "./components/Form";
+import Filter from "./components/Filter";
 import List from "./components/List";
+import Form from "./components/Form";
 // import ListItem from "./components/ListItem";
 
 function App() {
   return (
     <div>
       <Header />
-      <section>
-        <Form />
-      </section>
+      <Filter />
       <List />
-      <section>
-        <form>
-          <div>
-            <label htmlFor="search">Новое задание</label>
-            <input id="search" placeholder="Название" />
-          </div>
-          <div>
-            <button type="button">Создать</button>
-          </div>
-        </form>
-      </section>
+      <Form />
     </div>
   );
 }

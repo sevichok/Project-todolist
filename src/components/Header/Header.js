@@ -1,11 +1,11 @@
-import { Head, P } from "./Header.styles";
+import './HeaderStyle.css';
 
 const Header = () => {
   return (
-    <Head>
-      <h1 className="title">Todo list</h1>
-      <P color="yellow">Количество записей 10</P>
-    </Head>
+    <div className="headerContainer">
+      <h1 className="title"> Todo list</h1>
+      <p> Количество записей 10</p>
+    </div>
   );
 };
 
