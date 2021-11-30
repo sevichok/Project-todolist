@@ -6,7 +6,7 @@ const Form = () => {
         <div className="formContainer">
             <label htmlFor="search">Новое задание</label>
             <input id="search" placeholder="Название" />
-            <Button>Создать</Button>
+            <Button value='Создать'></Button>
         </div>
     )
 }
