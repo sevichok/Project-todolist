@@ -1,45 +1,16 @@
 import Header from "./components/Header";
+import Form from "./components/Form";
+import List from "./components/List";
+// import ListItem from "./components/ListItem";
 
 function App() {
   return (
     <div>
       <Header />
       <section>
-        <form>
-          <div>
-            <label htmlFor="search">Поиск по названию</label>
-            <input id="search" placeholder="Начни вводить" />
-          </div>
-          <div>
-            <button type="button">Все</button>
-            <button type="button">Выполненные</button>
-            <button type="button">Удалённые</button>
-          </div>
-        </form>
+        <Form />
       </section>
-      <ul>
-        <li>
-          <p>Сходить в магазин</p>
-          <div>
-            <button type="button">Выполнено</button>
-            <button type="button">Удалить</button>
-          </div>
-        </li>
-        <li>
-          <p>Покормить кота</p>
-          <div>
-            <button type="button">Выполнено</button>
-            <button type="button">Удалить</button>
-          </div>
-        </li>
-        <li>
-          <p>Выучить JS</p>
-          <div>
-            <button type="button">Выполнено</button>
-            <button type="button">Удалить</button>
-          </div>
-        </li>
-      </ul>
+      <List />
       <section>
         <form>
           <div>
