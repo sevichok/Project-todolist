@@ -1,11 +1,12 @@
 import "./FormStyle.css";
+import Button from "../Button";
 
 const Form = () => {
     return (
         <div className="formContainer">
             <label htmlFor="search">Новое задание</label>
             <input id="search" placeholder="Название" />
-            <button type="button">Создать</button>
+            <Button>Создать</Button>
         </div>
     )
 }
