@@ -5,6 +5,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(215, 215, 215);
+  padding: 0px 200px;
 }
 
 code {
@@ -14,3 +16,10 @@ code {
 /* button {
   background-color: orchid;
 } */
+
+.container{
+  border: black 2px solid;
+  border-radius: 6px;
+  margin-top: 10px;
+  padding: 10px 20px;
+}

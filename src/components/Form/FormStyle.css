@@ -1,8 +1,24 @@
 .formContainer {
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
-    background-color: tomato;
+    background-color: white;
+    border: black 2px solid;
+    border-radius: 6px;
+    margin-top: 10px;
     gap: 5px;
     font-size: 24px;
+    padding: 10px 10px
+}
+.divFormButtons {
+    display: flex;
+    justify-content: center;
+}
+
+.divFormSearch{
+    padding: 5px 10px 10px;
+    display: flex;
+    justify-content: center;
+}
+input {
+    width: 100%;
+    margin: auto;
+    padding: 0px 10px;
 }

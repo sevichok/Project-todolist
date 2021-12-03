@@ -1,8 +1,9 @@
 import "./ButtonStyle.css";
+// import cn from "classnames";
 
-const Button = (props) => {
+const Button = ({children,variant}) => {
     return (
-        <button type="button" className="button">{props.value}</button>
+        <button type="button contained" className="button">{children}</button>
     );
 };
 

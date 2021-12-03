@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <div className="headerContainer">
       <h1 className="title"> Todo list</h1>
-      <p> Количество записей 10</p>
+      <h4> Количество записей 10</h4>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 .listContainer {
-    background-color: palegreen;
-    padding: 10px 20px;
+    background-color: white;
+    border: black 2px solid;
+    border-radius: 6px;
+    margin-top: 10px;
 }
 ul {
     padding-inline-start: 0px;
@@ -9,4 +11,5 @@ ul {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     list-style-type: none;
+    padding: 0 10px 10px;
 }

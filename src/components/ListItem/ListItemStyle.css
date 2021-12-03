@@ -1,0 +1,16 @@
+li {
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+.listItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.listItemButtons {
+    align-self: center;
+}

@@ -3,11 +3,14 @@ import Button from "../Button";
 
 const Filter = () => {
     return (<div className="filterContainer">
-        <label htmlFor="search">Поиск по названию</label>
-        <input id="search" placeholder="Начни вводить" />
-        <Button value='Все'></Button>
-        <Button value='Выполненные'></Button>
-        <Button value='Удаленные'></Button>
+        <label htmlFor="search"><h4>Поиск по названию</h4></label>
+        <div className="inputContainer">
+            <input id="search" placeholder="Начни вводить" /></div>
+        <div className="filterContainerButtons">
+            <Button children='Все'></Button>
+            <Button children='Выполненные'></Button>
+            <Button children='Удаленные'></Button>
+        </div>
     </div>);
 };
 
