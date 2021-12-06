@@ -1,13 +1,16 @@
 import "./FormStyle.css";
 import Button from "../Button";
+import Input from "../Input";
 
 const Form = () => {
     return (
         <div className="formContainer">
             <label htmlFor="search"><h4>Новое задание</h4></label>
-            <div className="divFormSearch">
-                <input id="search" placeholder="Название" />
-            </div>
+            <Input
+                name="name"
+                id="create"
+                placeholder="Название"
+            />
             <div className="divFormButtons">
                 <Button outlook="contained" size="large" type="button" children='Создать'></Button>
             </div>
@@ -16,3 +19,5 @@ const Form = () => {
 }
 
 export default Form;
+
+//                 onChange={this.handleChange}

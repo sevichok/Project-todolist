@@ -1,11 +1,13 @@
 import ListItem from "../ListItem";
 import "./ListStyle.css";
 
-const List = () => {
+const List = ({ list }) => {
+    const todoItems = list?.map(({ id, name, done }) => (
+        <ListItem key={id} name={name} done={done} />)
+    );
+
     return (<ul className="listContainer">
-<ListItem />
-<ListItem />
-<ListItem />
+        {todoItems}
     </ul>);
 };
 
