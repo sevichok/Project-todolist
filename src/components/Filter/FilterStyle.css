@@ -4,18 +4,19 @@
     border: black 2px solid;
     border-radius: 6px;
     margin-top: 10px;
+    text-align: center;
 }
 .filterContainerButtons {
     padding: 0px 10px 10px;
     display: flex;
     justify-content: space-between;
 }
-h4 {
+/* h4 {
     font-size: 14px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:black;
     text-align: center;
-}
+} */
 .inputContainer {
     padding: 5px 10px 10px;
     display: flex;
