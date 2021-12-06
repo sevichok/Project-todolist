@@ -13,13 +13,15 @@ class App extends React.Component {
     todoList: [],
     deletedTodo: [],
   };
-
+  
   handleCreateTodo = (name) => {
     const id = uuidv4();
+
     this.setState({
-      todoList: this.state.todoList.concat({ name, done: false, id: id }),
+      todoList: this.state.todoList.concat([{ name, done: false, id: id }]),
     });
-    console.log(id)
+    console.log(id);
+    console.log(this.state.todoList);
   };
 
   render() {
@@ -29,8 +31,8 @@ class App extends React.Component {
       <div className="container">
         <Header />
         <Filter />
-        <List list={todoList}/>
-        <Form onCreateTodo={this.handleCreateTodo}/>
+        <List list={todoList} />
+        <Form onCreateTodo={this.handleCreateTodo} />
       </div>
     );
   };

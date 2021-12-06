@@ -6,7 +6,7 @@ import React from "react";
 
 class Form extends React.Component {
     state = {
-        name: "",
+        name: " ",
     };
 
     handleChange = (e) => {
@@ -14,13 +14,14 @@ class Form extends React.Component {
     };
 
     handleSubmit = (e) => {
+        // console.log(e);
         e.preventDefault();
 
         const { onCreateTodo } = this.props;
         const { name } = this.state;
         onCreateTodo(name);
 
-        this.setState({ name: "" });
+        this.setState({ name: " " });
     };
 
     render() {
