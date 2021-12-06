@@ -6,7 +6,8 @@ import Form from "./components/Form";
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
 
-let listForLocalStorage = JSON.parse(localStorage.getItem("todo-list") || "[]"); // список передаваемый в localStorage
+let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
+// let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
 
 class App extends React.Component {
   state = {
@@ -27,7 +28,7 @@ class App extends React.Component {
     console.log(this.state.todoList);
 
     listForLocalStorage.push({ name, id, done: false });
-    localStorage.setItem("todo-list", JSON.stringify(listForLocalStorage));
+    localStorage.setItem("active-list", JSON.stringify(listForLocalStorage));
   };
 
   render() {
@@ -36,7 +37,7 @@ class App extends React.Component {
 
     return (
       <div className="container">
-        <Header />
+        <Header children={todoList.length} />
         <Filter />
         <List list={todoList} />
         <Form onCreateTodo={this.handleCreateTodo} />

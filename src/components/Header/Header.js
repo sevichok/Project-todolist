@@ -1,10 +1,10 @@
 import './HeaderStyle.css';
 
-const Header = () => {
+const Header = ({children}) => {
   return (
     <div className="headerContainer">
       <h1 className="title"> Todo list</h1>
-      <h4> Количество записей 10</h4>
+      <h4> Количество записей {children}</h4>
     </div>
   );
 };
