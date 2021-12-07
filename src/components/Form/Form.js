@@ -35,7 +35,7 @@ class Form extends React.Component {
     };
 
     render() {
-        const { name,error, } = this.state;
+        const { name, error, } = this.state;
 
         return (
             <div className="formContainer">
@@ -55,7 +55,8 @@ class Form extends React.Component {
                         outlook="contained"
                         size="large"
                         type="submit"
-                        children='Создать'></Button>
+                    >Создать
+                    </Button>
                 </div>
             </div>
         )

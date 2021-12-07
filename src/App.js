@@ -44,7 +44,7 @@ class App extends React.Component {
 
     return (
       <div className="container">
-        <Header children={todoList.length} />
+        <Header listCount={todoList.length} />
         <Filter />
         <List list={todoList} />
         <Form onCreateTodo={this.handleCreateTodo} />

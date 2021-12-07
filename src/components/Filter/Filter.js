@@ -7,9 +7,9 @@ const Filter = () => {
         <div className="inputContainer">
             <input id="search" placeholder="Начни вводить" /></div>
         <div className="filterContainerButtons">
-            <Button outlook="contained" size="large" type="button" children='Все'></Button>
-            <Button outlook="contained" size="large" type="button" children='Выполненные'></Button>
-            <Button outlook="contained" size="large" type="button" children='Удаленные'></Button>
+            <Button outlook="contained" size="large" type="button">Все</Button>
+            <Button outlook="contained" size="large" type="button">Выполненные</Button>
+            <Button outlook="contained" size="large" type="button">Удаленные</Button>
         </div>
     </div>);
 };
