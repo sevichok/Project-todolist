@@ -3,6 +3,7 @@ import "./ListItemStyle.css";
 import React from "react";
 
 const ListItem = ({ name }) => {
+    
     return (<li className="listItem">
         <div className="listItemText">
             <h4>{name}</h4>
@@ -12,7 +13,9 @@ const ListItem = ({ name }) => {
                 outlook="outlined"
                 size="small"
                 type="button"
-                children="Выполнено">
+                children="Выполнено"
+                // onClick={this.handleDone}
+            >
             </Button>
             <Button
                 outlook="outlined"

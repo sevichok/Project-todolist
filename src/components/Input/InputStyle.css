@@ -1,3 +1,4 @@
+
 input {
     width: 100%;
     margin: auto;
@@ -8,4 +9,19 @@ input {
     padding: 5px 0px 10px;
     display: flex;
     justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.divForDescription h6{
+    padding-top: 5px;
+    margin: 0px;
+}
+
+.forErrorBorder {
+    border: 2px solid red;
+}
+
+.forErrorDescription {
+    color: red;
 }
