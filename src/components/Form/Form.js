@@ -39,11 +39,11 @@ class Form extends React.Component {
 
         return (
             <div className="formContainer">
-                <label htmlFor="search"><h4>Новое задание</h4></label>
                 <Input
                     name="name"
                     id="create"
                     value={name}
+                    label="Новое задание"
                     error={Boolean(error)}
                     description={error}
                     placeholder="Название"

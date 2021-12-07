@@ -1,15 +1,14 @@
 import "./InputStyle.css";
 import React from "react";
 
-const Input = ({error,description,...inputProps }) => {
-    return (
+const Input = ({error,label,description,...inputProps }) => {
+    return (<>
+        <label htmlFor="search"><h5>{label}</h5></label>
         <div className="divFormSearch" error={error}>
         <input {...inputProps} className = {error ? "forErrorBorder" : " "}
          />
-         <div className="divForDescription">
          {description && <h6 className = {error ? "forErrorDescription" : " "}>{description}</h6>}
-         </div>
-    </div>
+    </div></>
     );
 };
 
