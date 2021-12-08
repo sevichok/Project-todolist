@@ -38,6 +38,14 @@ class App extends React.Component {
     localStorage.setItem("active-list", JSON.stringify(listForLocalStorage));
   };
 
+  handleDone = () => {
+    console.log("Pressed button Done")
+  };
+
+  handleDelete = () => {
+    console.log("Pressed button Delete")
+  };
+
   render() {
     const { todoList } = this.state;
 
@@ -46,7 +54,10 @@ class App extends React.Component {
       <div className="container">
         <Header listCount={todoList.length} />
         <Filter />
-        <List list={todoList} />
+        <List
+          list={todoList}
+          onDone={this.handleDone}
+          onDelete={this.handleDelete} />
         <Form onCreateTodo={this.handleCreateTodo} />
       </div>
     );

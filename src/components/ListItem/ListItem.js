@@ -2,7 +2,14 @@ import Button from "../Button";
 import "./ListItemStyle.css";
 import React from "react";
 
-const ListItem = ({ name }) => {
+const ListItem = ({ name, id, pressedButtonDone, pressedButtonDelete }) => {
+    const handleDelete = () => {
+        pressedButtonDelete(id);
+    };
+
+    const handleDone = () => {
+        pressedButtonDone(id);
+    };
 
     return (<li className="listItem">
         <div className="listItemText">
@@ -13,13 +20,14 @@ const ListItem = ({ name }) => {
                 outlook="outlined"
                 size="small"
                 type="button"
-            // onClick={this.handleDone}
+                onClick={handleDone}
             >Выполнено
             </Button>
             <Button
                 outlook="outlined"
                 size="small"
                 type="button"
+                onClick={handleDelete}
             >Удалить
             </Button>
         </div>
