@@ -8,8 +8,8 @@ const List = ({ list, onDone, onDelete }) => {
             key={id}
             name={name}
             done={done}
-            pressedButtonDone={onDone}
-            pressedButtonDelete={onDelete} />);
+            onButtonDone={onDone}
+            onButtonDelete={onDelete} />);
 
     // console.log();
     return (<ul className="listContainer">

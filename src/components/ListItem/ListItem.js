@@ -2,13 +2,13 @@ import Button from "../Button";
 import "./ListItemStyle.css";
 import React from "react";
 
-const ListItem = ({ name, id, pressedButtonDone, pressedButtonDelete }) => {
+const ListItem = ({ name, id, onButtonDone, onButtonDelete }) => {
     const handleDelete = () => {
-        pressedButtonDelete(id);
+        onButtonDelete(id);
     };
 
     const handleDone = () => {
-        pressedButtonDone(id);
+        onButtonDone(id);
     };
 
     return (<li className="listItem">
