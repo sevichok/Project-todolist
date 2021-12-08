@@ -10,6 +10,7 @@ class Form extends React.Component {
     state = {
         name: " ",
         error: validateForm(" "),
+        touched: false,
     };
 
     handleChange = (e) => {
@@ -19,23 +20,36 @@ class Form extends React.Component {
         });
     };
 
+    handleBlur = () => {
+        this.setState({
+            touched: true,
+        });
+    };
+
     handleSubmit = (e) => {
         // console.log(e);
         e.preventDefault();
 
         const { onCreateTodo } = this.props;
-        const { name, error, } = this.state;
+        const { name, error, touched } = this.state;
+
+        if (error && !touched) {
+            this.setState({ touched: true });
+            return;
+        }
+
         if (!error) {
             onCreateTodo(name);
             this.setState({
                 name: " ",
                 error: validateForm(""),
+                touched: false
             });
         }
     };
 
     render() {
-        const { name, error, } = this.state;
+        const { name, error, touched, } = this.state;
 
         return (
             <div className="formContainer">
@@ -44,9 +58,10 @@ class Form extends React.Component {
                     id="create"
                     value={name}
                     label="Новое задание"
-                    error={Boolean(error)}
-                    description={error}
+                    error={Boolean((touched && error))}
+                    description={(touched && error)}
                     placeholder="Название"
+                    onBlur={this.handleBlur}
                     onChange={this.handleChange}
                 />
                 <div className="divFormButtons">
