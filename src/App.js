@@ -7,27 +7,27 @@ import Form from "./components/Form";
 
 
 
-let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
+// let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
 // let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
 
 /*
   1. handleChangeFilterValue => <Filter onChangeFilterValue={handleChangeFilterValue}/>
   2. handleClick => <Filter onChangeFilterValue={handleChangeFilterValue} onClick={handleClick}/> // фильтрация по кнопкам
-  3. handleDone => <List list={todoList} onDone={handleDone} />
-  4. handleDelete => <List list={todoList} onDone={handleDone} onDelete={handleDelete} />
+
 */
-// const defaultTodo = {
-//   id: uuidv4(),
-//   name: "default todo",
-//   done: false,
-// };
+const defaultTodo = {
+  id: uuidv4(),
+  name: "default todo",
+  done: false,
+};
 
 class App extends React.Component {
   state = {
     filterStatus: "all", // deleted, done
     filterValue: "",
-    todoList: listForLocalStorage,
+    todoList: [defaultTodo],
     deletedTodoList: [],
+    changeState: []
   };
 
   handleCreateTodo = (name) => {
@@ -39,23 +39,19 @@ class App extends React.Component {
         done: false,
         id: createId,
       }),
-    });
-
-    // console.log(id);
-    // console.log(this.state.todoList);
-
-    // listForLocalStorage.push({ name, id: createId, done: false });
-    // localStorage.setItem("active-list", JSON.stringify(listForLocalStorage));
+    },
+      () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
   };
 
   handleDone = (id) => {
     console.log(`Pressed button Done on item with ID: ${id}`);
 
     this.setState((state) => ({
-      todoList: state.todoList.map((todo) =>
-        todo.id === id ? { ...todo, done: true } : todo
+      todoList: state.todoList.map((todoItem) =>
+        todoItem.id === id ? { ...todoItem, done: true } : todoItem
       ),
-    }));
+    }),
+      () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
   };
 
   handleDelete = (id) => {
@@ -63,16 +59,20 @@ class App extends React.Component {
 
     this.setState((state) => {
       const deletedTodoIndex = state.todoList.findIndex(
-        (todo) => todo.id === id
+        (todoItem) => todoItem.id === id
       );
 
-      const deletedTodo = state.todoList.splice(deletedTodoIndex, 1);
+      const deletedTodoItem = state.todoList.splice(deletedTodoIndex, 1);
+
+      // listDeletedForLocalStorage.push(deletedTodoItem);
+      // localStorage.setItem("deleted-list", JSON.stringify(listDeletedForLocalStorage));
 
       return {
         todoList: [...state.todoList],
-        deletedTodoList: state.deletedTodoList.concat(deletedTodo),
+        deletedTodoList: state.deletedTodoList.concat(deletedTodoItem),
       };
-    });
+    },
+      () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
   };
 
   render() {
