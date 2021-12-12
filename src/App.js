@@ -59,7 +59,20 @@ class App extends React.Component {
   };
 
   handleDelete = (id) => {
-    console.log(`Pressed button Delete on item with ID: ${id}`)
+    console.log(`Pressed button Delete on item with ID: ${id}`);
+
+    this.setState((state) => {
+      const deletedTodoIndex = state.todoList.findIndex(
+        (todo) => todo.id === id
+      );
+
+      const deletedTodo = state.todoList.splice(deletedTodoIndex, 1);
+
+      return {
+        todoList: [...state.todoList],
+        deletedTodoList: state.deletedTodoList.concat(deletedTodo),
+      };
+    });
   };
 
   render() {
