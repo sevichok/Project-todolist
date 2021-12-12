@@ -1,10 +1,11 @@
+import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 import List from "./components/List";
 import Form from "./components/Form";
 
-import React from "react";
-import { v4 as uuidv4 } from "uuid";
+
 
 let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
 // let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
@@ -15,48 +16,63 @@ let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"
   3. handleDone => <List list={todoList} onDone={handleDone} />
   4. handleDelete => <List list={todoList} onDone={handleDone} onDelete={handleDelete} />
 */
+// const defaultTodo = {
+//   id: uuidv4(),
+//   name: "default todo",
+//   done: false,
+// };
 
 class App extends React.Component {
   state = {
     filterStatus: "all", // deleted, done
     filterValue: "",
     todoList: listForLocalStorage,
-    deletedTodo: [],
+    deletedTodoList: [],
   };
 
   handleCreateTodo = (name) => {
-    const id = uuidv4();
+    const createId = uuidv4();
 
     this.setState({
-      todoList: this.state.todoList.concat([{ name, done: false, id: id }]),
+      todoList: this.state.todoList.concat({
+        name,
+        done: false,
+        id: createId,
+      }),
     });
 
     // console.log(id);
-    console.log(this.state.todoList);
+    // console.log(this.state.todoList);
 
-    listForLocalStorage.push({ name, id, done: false });
-    localStorage.setItem("active-list", JSON.stringify(listForLocalStorage));
+    // listForLocalStorage.push({ name, id: createId, done: false });
+    // localStorage.setItem("active-list", JSON.stringify(listForLocalStorage));
   };
 
-  handleDone = () => {
-    console.log("Pressed button Done")
+  handleDone = (id) => {
+    console.log(`Pressed button Done on item with ID: ${id}`);
+
+    this.setState((state) => ({
+      todoList: state.todoList.map((todo) =>
+        todo.id === id ? { ...todo, done: true } : todo
+      ),
+    }));
   };
 
-  handleDelete = () => {
-    console.log("Pressed button Delete")
+  handleDelete = (id) => {
+    console.log(`Pressed button Delete on item with ID: ${id}`)
   };
 
   render() {
     const { todoList } = this.state;
-
+    console.log(this.state.todoList);
 
     return (
       <div className="container">
         <Header listCount={todoList.length} />
         <Filter />
         <List
-          list={todoList}
           onDone={this.handleDone}
+          list={todoList}
           onDelete={this.handleDelete} />
         <Form onCreateTodo={this.handleCreateTodo} />
       </div>
