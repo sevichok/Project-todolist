@@ -8,7 +8,7 @@ import Form from "./components/Form";
 
 
 let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
-// let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
+let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
 
 /*
   1. handleChangeFilterValue => <Filter onChangeFilterValue={handleChangeFilterValue}/>
@@ -26,7 +26,7 @@ class App extends React.Component {
     filterStatus: "all", // deleted, done
     filterValue: "",
     todoList: listForLocalStorage,
-    deletedTodoList: [],
+    deletedTodoList: listDeletedForLocalStorage,
     changeState: []
   };
 
