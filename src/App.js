@@ -69,12 +69,18 @@ class App extends React.Component {
         deletedTodoList: state.deletedTodoList.concat(deletedTodoItem),
       };
     },
-      () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
+      () => {
+        localStorage.setItem("active-list", JSON.stringify(this.state.todoList));
+        localStorage.setItem("deleted-list", JSON.stringify(this.state.deletedTodoList))
+      });
   };
 
-  handleChangeFilterValue = () => {
-    console.log("Pressed button filter done");
-  };
+  // handleChangeFilterValue = () => {
+  //   console.log("Pressed button filter done");
+  //   this.setState((state)=>{
+  //     this.state.filterStatus="done";
+  //   })
+  // };
 
   render() {
     const { todoList } = this.state;
