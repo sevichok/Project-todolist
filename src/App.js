@@ -31,7 +31,7 @@ class App extends React.Component {
   };
 
   handleCreateTodo = (name) => {
-    const createId = uuidv4();
+    const createId = uuidv4(); //Math.floor(Math.random() * 10000), uuidv4()
 
     this.setState({
       todoList: this.state.todoList.concat({
@@ -75,26 +75,34 @@ class App extends React.Component {
       });
   };
 
-  handleChangeFilterValue = () => {
-    console.log("Pressed button filter done");
+  getFilteredToDo = () => {
+    if (this.state.filterStatus === 'done') {
+      console.log('Pressed filter done')
+      return this.state.todoList.filter((todoItem) => todoItem.done === true)
+    }
+    if (this.state.filterStatus === 'all') {
+      console.log('Pressed filter all')
+      return this.state.todoList
+    }
+    if (this.state.filterStatus === 'deleted') {
+      console.log('Pressed filter deleted')
+      return this.state.deletedTodoList
+    }
+  }
 
-    this.setState((state) => ({
-      todoList: state.todoList.filter(
-        (todoItem) => todoItem.done === true),
-      filterStatus: "done",  
-    }))
-  };
+  handleClick = (newFilterStatus) => {
+    this.setState({ filterStatus: newFilterStatus })
+  }
 
   render() {
-    const { todoList } = this.state;
-    console.log(this.state.todoList);
+    const todoList = this.getFilteredToDo();
+    console.log(this.getFilteredToDo());
 
     return (
       <div className="container">
         <Header listCount={todoList.length} />
         <Filter
-          done={this.state.done}
-          onChangeFilterValue={this.handleChangeFilterValue} />
+          onClick={this.handleClick} />
         <List
           onDone={this.handleDone}
           list={todoList}

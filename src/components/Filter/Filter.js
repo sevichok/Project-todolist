@@ -1,9 +1,16 @@
 import "./FilterStyle.css";
 import Button from "../Button";
 
-const Filter = (done, onChangeFilterValue) => {
-    const selectDoneFilter = () => {
-        onChangeFilterValue(done)
+const Filter = ({onClick}) => {
+
+    const onDoneStatus = () => {
+        onClick('done')
+    }
+    const onAllStatus = () => {
+        onClick('all')
+    }
+    const onDeletedStatus = () => {
+        onClick('deleted')
     }
 
     return (<div className="filterContainer">
@@ -15,16 +22,18 @@ const Filter = (done, onChangeFilterValue) => {
                 outlook="contained"
                 size="large"
                 type="button"
+                onClick={onAllStatus}
             >Все</Button>
             <Button outlook="contained"
                 size="large"
                 type="button"
-                onClick={selectDoneFilter}
-                >Выполненные</Button>
+                onClick={onDoneStatus}
+            >Выполненные</Button>
             <Button
                 outlook="contained"
                 size="large"
                 type="button"
+                onClick={onDeletedStatus}
             >Удаленные</Button>
         </div>
     </div>);
