@@ -1,7 +1,10 @@
 import "./FilterStyle.css";
 import Button from "../Button";
 
-const Filter = () => {
+const Filter = (done, onChangeFilterValue) => {
+    const selectDoneFilter = () => {
+        onChangeFilterValue(done)
+    }
 
     return (<div className="filterContainer">
         <label htmlFor="search"><h4>Поиск по названию</h4></label>
@@ -16,6 +19,7 @@ const Filter = () => {
             <Button outlook="contained"
                 size="large"
                 type="button"
+                onClick={selectDoneFilter}
                 >Выполненные</Button>
             <Button
                 outlook="contained"

@@ -7,7 +7,7 @@ import Form from "./components/Form";
 
 
 
-// let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
+let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
 // let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
 
 /*
@@ -25,7 +25,7 @@ class App extends React.Component {
   state = {
     filterStatus: "all", // deleted, done
     filterValue: "",
-    todoList: [],
+    todoList: listForLocalStorage,
     deletedTodoList: [],
     changeState: []
   };
@@ -75,12 +75,15 @@ class App extends React.Component {
       });
   };
 
-  // handleChangeFilterValue = () => {
-  //   console.log("Pressed button filter done");
-  //   this.setState((state)=>{
-  //     this.state.filterStatus="done";
-  //   })
-  // };
+  handleChangeFilterValue = () => {
+    console.log("Pressed button filter done");
+
+    this.setState((state) => ({
+      todoList: state.todoList.filter(
+        (todoItem) => todoItem.done === true),
+      filterStatus: "done",  
+    }))
+  };
 
   render() {
     const { todoList } = this.state;
@@ -90,6 +93,7 @@ class App extends React.Component {
       <div className="container">
         <Header listCount={todoList.length} />
         <Filter
+          done={this.state.done}
           onChangeFilterValue={this.handleChangeFilterValue} />
         <List
           onDone={this.handleDone}
