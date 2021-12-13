@@ -11,8 +11,6 @@ const List = ({ list, onDone, onDelete }) => {
             done={done}
             onButtonDone={onDone}
             onButtonDelete={onDelete} />);
-
-    // console.log();
     return (<ul className="listContainer">
         {todoItems}
     </ul>);

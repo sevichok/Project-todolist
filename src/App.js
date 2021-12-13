@@ -15,17 +15,17 @@ import Form from "./components/Form";
   2. handleClick => <Filter onChangeFilterValue={handleChangeFilterValue} onClick={handleClick}/> // фильтрация по кнопкам
 
 */
-const defaultTodo = {
-  id: uuidv4(),
-  name: "default todo",
-  done: false,
-};
+// const defaultTodo = {
+//   id: uuidv4(),
+//   name: "default todo",
+//   done: false,
+// };
 
 class App extends React.Component {
   state = {
     filterStatus: "all", // deleted, done
     filterValue: "",
-    todoList: [defaultTodo],
+    todoList: [],
     deletedTodoList: [],
     changeState: []
   };
@@ -64,15 +64,16 @@ class App extends React.Component {
 
       const deletedTodoItem = state.todoList.splice(deletedTodoIndex, 1);
 
-      // listDeletedForLocalStorage.push(deletedTodoItem);
-      // localStorage.setItem("deleted-list", JSON.stringify(listDeletedForLocalStorage));
-
       return {
         todoList: [...state.todoList],
         deletedTodoList: state.deletedTodoList.concat(deletedTodoItem),
       };
     },
       () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
+  };
+
+  handleChangeFilterValue = () => {
+    console.log("Pressed button filter done");
   };
 
   render() {
@@ -82,7 +83,8 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header listCount={todoList.length} />
-        <Filter />
+        <Filter
+          onChangeFilterValue={this.handleChangeFilterValue} />
         <List
           onDone={this.handleDone}
           list={todoList}
