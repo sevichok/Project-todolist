@@ -1,9 +1,12 @@
 import Button from "../Button";
 import "./ListItemStyle.css";
-import React from "react";
+import React, { useState } from "react";
 import Input from "../Input";
 
-const ListItem = ({ name, id, onButtonDone, onButtonDelete, onButtonEdit }) => {
+const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onButtonEdit }) => {
+
+    const [showEditInput, setShowEditInput] = useState(false);
+
     const handleDelete = () => {
         onButtonDelete(id);
     };
@@ -13,7 +16,8 @@ const ListItem = ({ name, id, onButtonDone, onButtonDelete, onButtonEdit }) => {
     };
 
     const handleEdit = () => {
-        onButtonEdit(name);
+        onButtonEdit(id, name);
+        setShowEditInput(true);
     }
 
     return (<li className="listItem">
@@ -21,9 +25,11 @@ const ListItem = ({ name, id, onButtonDone, onButtonDelete, onButtonEdit }) => {
             <h4>{name}</h4>
         </div>
         <div className="listItemButtons">
-            {Button.onClick={handleEdit} && (
-                <Input/>
-            )}
+            {showEditInput && <>
+                <Input
+                    name={newTitleValue}
+                    placeholder="Новое название" />
+            </>}
             <Button
                 outlook="outlined"
                 size="small"

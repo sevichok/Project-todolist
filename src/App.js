@@ -26,7 +26,7 @@ class App extends React.Component {
   };
 
   handleCreateTodo = (name) => {
-    const createId = Math.floor(Math.random() * 10000); //Math.floor(Math.random() * 10000), uuidv4()
+    const createId = Math.floor(Math.random() * 100000); //Math.floor(Math.random() * 10000), uuidv4()
 
     this.setState({
       todoList: this.state.todoList.concat({
@@ -49,14 +49,15 @@ class App extends React.Component {
       () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
   };
 
-  handleEdit = (name) => {
+  handleEdit = (id, name, newTitleValue) => {
     console.log(`Pressed button Edit on item with name: ${name}`);
 
     this.setState((state) => ({
       todoList: state.todoList.map((todoItem) =>
-        todoItem.name === name ? { ...todoItem, name: "newTitleValue" } : todoItem
+        todoItem.id === id ? { ...todoItem, name: newTitleValue } : todoItem
       ),
-    }),)
+    }),
+    )
   };
 
   handleDelete = (id) => {
