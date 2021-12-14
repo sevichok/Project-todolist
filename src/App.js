@@ -1,20 +1,16 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 import List from "./components/List";
 import Form from "./components/Form";
+import Input from "./components/Input";
 
 
 
 let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
 let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
 
-/*
-  1. handleChangeFilterValue => <Filter onChangeFilterValue={handleChangeFilterValue}/>
-  2. handleClick => <Filter onChangeFilterValue={handleChangeFilterValue} onClick={handleClick}/> // фильтрация по кнопкам
-
-*/
 // const defaultTodo = {
 //   id: uuidv4(),
 //   name: "default todo",
@@ -27,11 +23,10 @@ class App extends React.Component {
     filterValue: "",
     todoList: listForLocalStorage,
     deletedTodoList: listDeletedForLocalStorage,
-    changeState: []
   };
 
   handleCreateTodo = (name) => {
-    const createId = uuidv4(); //Math.floor(Math.random() * 10000), uuidv4()
+    const createId = Math.floor(Math.random() * 10000); //Math.floor(Math.random() * 10000), uuidv4()
 
     this.setState({
       todoList: this.state.todoList.concat({
@@ -52,6 +47,16 @@ class App extends React.Component {
       ),
     }),
       () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
+  };
+
+  handleEdit = (name) => {
+    console.log(`Pressed button Edit on item with name: ${name}`);
+
+    this.setState((state) => ({
+      todoList: state.todoList.map((todoItem) =>
+        todoItem.name === name ? { ...todoItem, name: "newTitleValue" } : todoItem
+      ),
+    }),)
   };
 
   handleDelete = (id) => {
@@ -104,6 +109,7 @@ class App extends React.Component {
         <Filter
           onClick={this.handleClick} />
         <List
+          onEdit={this.handleEdit}
           onDone={this.handleDone}
           list={todoList}
           onDelete={this.handleDelete} />
