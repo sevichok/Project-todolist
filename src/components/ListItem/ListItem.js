@@ -25,32 +25,40 @@ const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onBut
             <h4>{name}</h4>
         </div>
         <div className="listItemButtons">
-            {showEditInput && <>
-                <Input
-                    name={newTitleValue}
-                    placeholder="Новое название" />
-            </>}
-            <Button
-                outlook="outlined"
-                size="small"
-                type="button"
-                onClick={handleEdit}
-            >Изменить
-            </Button>
-            <Button
-                outlook="outlined"
-                size="small"
-                type="button"
-                onClick={handleDone}
-            >Выполнено
-            </Button>
-            <Button
-                outlook="outlined"
-                size="small"
-                type="button"
-                onClick={handleDelete}
-            >Удалить
-            </Button>
+            <div className="forEditState">
+                {showEditInput && <>
+                    <Input
+                        name={newTitleValue}
+                        placeholder="Новое название" />
+                    <Button
+                        outlook="outlined"
+                        size="small"
+                        type="button"
+                    >Перезаписать
+                    </Button>
+                </>}</div>
+            {!showEditInput && (<>
+                <Button
+                    outlook="outlined"
+                    size="small"
+                    type="button"
+                    onClick={handleEdit}
+                >Изменить
+                </Button>
+                <Button
+                    outlook="outlined"
+                    size="small"
+                    type="button"
+                    onClick={handleDone}
+                >Выполнено
+                </Button>
+                <Button
+                    outlook="outlined"
+                    size="small"
+                    type="button"
+                    onClick={handleDelete}
+                >Удалить
+                </Button></>)}
         </div>
     </li>)
 }

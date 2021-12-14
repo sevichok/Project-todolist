@@ -14,3 +14,9 @@ li {
 .listItemButtons {
     align-self: center;
 }
+.forEditState .button{
+    width: 100%;
+}
+.forEditState {
+    padding: 5px 0px;
+}
