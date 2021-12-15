@@ -16,8 +16,12 @@ const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onBut
     };
 
     const handleEdit = () => {
-        onButtonEdit(id, name);
+        onButtonEdit(id, name, newTitleValue);
         setShowEditInput(true);
+    }
+
+    const handleEditBack = () => {
+        setShowEditInput(false);
     }
 
     return (<li className="listItem">
@@ -34,7 +38,15 @@ const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onBut
                         outlook="outlined"
                         size="small"
                         type="button"
+                        // onClick={}
                     >Перезаписать
+                    </Button>
+                    <Button
+                        outlook="outlined"
+                        size="small"
+                        type="button"
+                        onClick={handleEditBack}
+                    >Назад
                     </Button>
                 </>}</div>
             {!showEditInput && (<>

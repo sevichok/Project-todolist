@@ -19,10 +19,10 @@
 } */
 .inputContainer {
     padding: 5px 10px 10px;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
 }
-input {
+.input {
     width: 100%;
     margin: auto;
     padding: 0px 10px;

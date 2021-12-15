@@ -54,7 +54,7 @@ class App extends React.Component {
 
     this.setState((state) => ({
       todoList: state.todoList.map((todoItem) =>
-        todoItem.id === id ? { ...todoItem, name: newTitleValue } : todoItem
+        todoItem.id === id ? { ...todoItem, name: name } : todoItem
       ),
     }),
     )
@@ -82,18 +82,25 @@ class App extends React.Component {
   };
 
   getFilteredToDo = () => {
+
+    let todoList = [];
+
     if (this.state.filterStatus === 'done') {
       console.log('Pressed filter done')
-      return this.state.todoList.filter((todoItem) => todoItem.done === true)
+      todoList= this.state.todoList.filter((todoItem) => todoItem.done === true)
     }
     if (this.state.filterStatus === 'all') {
       console.log('Pressed filter all')
-      return this.state.todoList
+      todoList= this.state.todoList
     }
     if (this.state.filterStatus === 'deleted') {
       console.log('Pressed filter deleted')
-      return this.state.deletedTodoList
+      todoList= this.state.deletedTodoList
     }
+    if (this.state.filterValue) {
+      todoList = todoList.filter((todoItem) => todoItem.name.includes(this.state.filterValue))
+    }
+    return todoList
   }
 
   handleClick = (newFilterStatus) => {
@@ -108,7 +115,8 @@ class App extends React.Component {
       <div className="container">
         <Header listCount={todoList.length} />
         <Filter
-          onClick={this.handleClick} />
+          onClick={this.handleClick}
+          inputValue={this.state.filterValue} />
         <List
           onEdit={this.handleEdit}
           onDone={this.handleDone}

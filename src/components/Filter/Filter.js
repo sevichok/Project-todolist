@@ -1,7 +1,8 @@
 import "./FilterStyle.css";
 import Button from "../Button";
+import Input from "../Input";
 
-const Filter = ({onClick}) => {
+const Filter = ({ inputValue, onClick }) => {
 
     const onDoneStatus = () => {
         onClick('done')
@@ -16,7 +17,10 @@ const Filter = ({onClick}) => {
     return (<div className="filterContainer">
         <label htmlFor="search"><h4>Поиск по названию</h4></label>
         <div className="inputContainer">
-            <input id="search" placeholder="Начни вводить" /></div>
+            <Input
+                placeholder="Начни вводить для фильтрации"
+                name={inputValue}
+            /></div>
         <div className="filterContainerButtons">
             <Button
                 outlook="contained"
