@@ -24,6 +24,7 @@ const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onBut
         setShowEditInput(false);
     }
 
+
     return (<li className="listItem">
         <div className="listItemText">
             <h4>{name}</h4>
@@ -32,13 +33,12 @@ const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onBut
             <div className="forEditState">
                 {showEditInput && <>
                     <Input
-                        name={newTitleValue}
+                        value={newTitleValue}
                         placeholder="Новое название" />
                     <Button
                         outlook="outlined"
                         size="small"
                         type="button"
-                        // onClick={}
                     >Перезаписать
                     </Button>
                     <Button

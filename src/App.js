@@ -4,7 +4,6 @@ import Header from "./components/Header";
 import Filter from "./components/Filter";
 import List from "./components/List";
 import Form from "./components/Form";
-import Input from "./components/Input";
 
 
 
@@ -35,7 +34,8 @@ class App extends React.Component {
         id: createId,
       }),
     },
-      () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
+      () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); }
+    );
   };
 
   handleDone = (id) => {
@@ -53,9 +53,7 @@ class App extends React.Component {
     console.log(`Pressed button Edit on item with name: ${name}`);
 
     this.setState((state) => ({
-      todoList: state.todoList.map((todoItem) =>
-        todoItem.id === id ? { ...todoItem, name: name } : todoItem
-      ),
+      todoList: state.todoList.map((todoItem) => todoItem.id === id ? { ...todoItem, name: name } : todoItem),
     }),
     )
   };
@@ -105,7 +103,7 @@ class App extends React.Component {
 
   handleFilterChange = (e) => {
     this.setState({
-      filterValue : e.target.value,
+      filterValue: e.target.value,
     });
   };
 
@@ -127,6 +125,7 @@ class App extends React.Component {
           onFilterChange={this.handleFilterChange} />
         <List
           onEdit={this.handleEdit}
+          initialValue={this.state.name}
           onDone={this.handleDone}
           list={todoList}
           onDelete={this.handleDelete} />
