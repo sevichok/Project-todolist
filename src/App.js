@@ -1,5 +1,5 @@
 import React from "react";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 import List from "./components/List";
@@ -25,7 +25,7 @@ class App extends React.Component {
   };
 
   handleCreateTodo = (name) => {
-    const createId = Math.floor(Math.random() * 100000); //Math.floor(Math.random() * 10000), uuidv4()
+    const createId = uuidv4(); //Math.floor(Math.random() * 10000), uuidv4()
 
     this.setState({
       todoList: this.state.todoList.concat({
@@ -49,11 +49,11 @@ class App extends React.Component {
       () => { localStorage.setItem("active-list", JSON.stringify(this.state.todoList)); });
   };
 
-  handleEdit = (id, name, newTitleValue) => {
+  handleEdit = (id, name) => {
     console.log(`Pressed button Edit on item with name: ${name}`);
 
     this.setState((state) => ({
-      todoList: state.todoList.map((todoItem) => todoItem.id === id ? { ...todoItem, name: name } : todoItem),
+      todoList: state.todoList.map((todoItem) => todoItem.id === id ? { ...todoItem, name } : todoItem),
     }),
     )
   };
@@ -65,6 +65,8 @@ class App extends React.Component {
       const deletedTodoIndex = state.todoList.findIndex(
         (todoItem) => todoItem.id === id
       );
+
+      if (deletedTodoIndex < 0) { return state }
 
       const deletedTodoItem = state.todoList.splice(deletedTodoIndex, 1);
 
@@ -128,6 +130,7 @@ class App extends React.Component {
           initialValue={this.state.name}
           onDone={this.handleDone}
           list={todoList}
+          hideDeleteTodoBtn={this.state.filterStatus === 'deleted'}
           onDelete={this.handleDelete} />
         <Form onCreateTodo={this.handleCreateTodo} />
       </div>

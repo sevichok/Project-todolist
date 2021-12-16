@@ -1,9 +1,9 @@
 import Button from "../Button";
 import "./ListItemStyle.css";
 import React, { useState } from "react";
-import Input from "../Input";
+import EditComponent from "../EditComponent";
 
-const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onButtonEdit }) => {
+const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, onButtonEdit }) => {
 
     const [showEditInput, setShowEditInput] = useState(false);
 
@@ -15,8 +15,12 @@ const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onBut
         onButtonDone(id);
     };
 
-    const handleEdit = () => {
-        onButtonEdit(id, name, newTitleValue);
+    const handleEdit = (newName) => {
+        onButtonEdit(id, newName);
+
+    }
+
+    const handleOpenUpdate = () => {
         setShowEditInput(true);
     }
 
@@ -32,45 +36,37 @@ const ListItem = ({ name, id, newTitleValue, onButtonDone, onButtonDelete, onBut
         <div className="listItemButtons">
             <div className="forEditState">
                 {showEditInput && <>
-                    <Input
-                        value={newTitleValue}
-                        placeholder="Новое название" />
-                    <Button
-                        outlook="outlined"
-                        size="small"
-                        type="button"
-                    >Перезаписать
-                    </Button>
-                    <Button
-                        outlook="outlined"
-                        size="small"
-                        type="button"
-                        onClick={handleEditBack}
-                    >Назад
-                    </Button>
+                    <EditComponent
+                        onEditRollback={handleEditBack}
+                        onEditUpdate={handleEdit}
+                        initialValue={name}
+                        onClosePanel={handleEditBack} />
                 </>}</div>
             {!showEditInput && (<>
+                {!hideDeleteTodoBtn && (
                 <Button
                     outlook="outlined"
                     size="small"
                     type="button"
-                    onClick={handleEdit}
+                    onClick={handleOpenUpdate}
                 >Изменить
-                </Button>
+                </Button>)}
+                {!hideDeleteTodoBtn && (
                 <Button
                     outlook="outlined"
                     size="small"
                     type="button"
                     onClick={handleDone}
                 >Выполнено
-                </Button>
+                </Button>)}
+                {!hideDeleteTodoBtn && (
                 <Button
                     outlook="outlined"
                     size="small"
                     type="button"
                     onClick={handleDelete}
                 >Удалить
-                </Button></>)}
+                </Button>)}</>)}
         </div>
     </li>)
 }
