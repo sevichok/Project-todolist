@@ -59,26 +59,27 @@ function App() {
   };
 
   const getFilteredToDo = () => {
+    let initialList;
 
     if (filterStatus === 'done') {
       console.log('Pressed filter done');
-      return todoList.filter((todoItem) => todoItem.done === true);
+      initialList = todoList.filter((todoItem) => todoItem.done === true);
     }
     if (filterStatus === 'all') {
       console.log('Pressed filter all');
-      return todoList;
+      initialList = todoList;
     }
     if (filterStatus === 'deleted') {
       console.log('Pressed filter deleted');
-      return deletedTodoList
+      initialList = deletedTodoList
     }
     if (filterValue) {
-      return todoList.filter((todoItem) => todoItem.name.toLowerCase().includes(filterValue.toLowerCase()))
+      initialList = initialList.filter((todoItem) => todoItem.name.toLowerCase().includes(filterValue.toLowerCase()))
     }
-    return todoList
+    return initialList
   };
 
-  getFilteredToDo();
+  const filteredList = getFilteredToDo();
 
   const handleClick = (newFilterStatus) => {
     setFilterStatus(newFilterStatus)
@@ -87,7 +88,7 @@ function App() {
   return (
     <div className="container">
       <Header
-        listCount={todoList.length}
+        listCount={filteredList.length}
       />
       <Filter
         onClick={handleClick}
@@ -98,7 +99,7 @@ function App() {
         onEdit={handleEdit}
         initialValue={todoList.name}
         onDone={handleDone}
-        list={todoList}
+        list={filteredList}
         hideDeleteTodoBtn={filterStatus === 'deleted'}
         onDelete={handleDelete}
       />
