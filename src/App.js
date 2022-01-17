@@ -22,7 +22,7 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("active-list", JSON.stringify(todoList));
-    localStorage.setItem("deleted-list", JSON.stringify(deletedTodoList))
+    localStorage.setItem("deleted-list", JSON.stringify(deletedTodoList));
   }, [todoList, deletedTodoList]);
 
   const handleCreateTodo = (name) => {
@@ -60,21 +60,19 @@ function App() {
 
   const getFilteredToDo = () => {
 
-    let todoList = [];
-
-    if (filterStatus === 'done') {
+    if (setFilterStatus('done')) {
       console.log('Pressed filter done');
-      setFilterStatus('done');
-      setTodoList(todoList.filter((todoItem) => todoItem.done === true))
+      
+      setTodoList(todoList.filter((todoItem) => todoItem.done === true));
     }
-    if (filterStatus === 'all') {
+    if (setFilterStatus('all')) {
       console.log('Pressed filter all');
-      setFilterStatus('all');
+      
       setTodoList(todoList);
     }
-    if (filterStatus === 'deleted') {
+    if (setFilterStatus('deleted')) {
       console.log('Pressed filter deleted');
-      setFilterStatus('deleted');
+      
       setTodoList(deletedTodoList);
     }
     
@@ -92,7 +90,7 @@ function App() {
   return (
     <div className="container">
       <Header
-        listCount={getFilteredToDo.length}
+        listCount={todoList.length}
       />
       <Filter
         onClick={handleClick}
