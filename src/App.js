@@ -60,32 +60,29 @@ function App() {
 
   const getFilteredToDo = () => {
 
-    if (setFilterStatus('done')) {
+    if (filterStatus === 'done') {
       console.log('Pressed filter done');
-      
-      setTodoList(todoList.filter((todoItem) => todoItem.done === true));
+      return todoList.filter((todoItem) => todoItem.done === true);
     }
-    if (setFilterStatus('all')) {
+    if (filterStatus === 'all') {
       console.log('Pressed filter all');
-      
-      setTodoList(todoList);
+      return todoList;
     }
-    if (setFilterStatus('deleted')) {
+    if (filterStatus === 'deleted') {
       console.log('Pressed filter deleted');
-      
-      setTodoList(deletedTodoList);
+      return deletedTodoList
     }
-    
-    // if (handleFilterChange) {
-    //   setTodoList(todoList.filter((todoItem) => todoItem.name.toLowerCase().includes(filterValue.toLowerCase())))
-    // }
+    if (filterValue) {
+      return todoList.filter((todoItem) => todoItem.name.toLowerCase().includes(filterValue.toLowerCase()))
+    }
     return todoList
   };
+
+  getFilteredToDo();
 
   const handleClick = (newFilterStatus) => {
     setFilterStatus(newFilterStatus)
   };
-
 
   return (
     <div className="container">
