@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import Button from "../Button";
 import Input from "../Input";
+import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
 
 const EditComponent = ({ initialValue, onEditRollback, onEditUpdate, onClosePanel }) => {
 
     const [value, setValue] = useState(initialValue);
+    const { trans } = useLocales();
 
     const handleChange = (e) => {
         setValue(
@@ -21,21 +23,15 @@ const EditComponent = ({ initialValue, onEditRollback, onEditUpdate, onClosePane
         <div>
             <Input
                 value={value}
-                placeholder="Новое название"
+                placeholder={trans.newEditName}
                 onChange={handleChange} />
             <Button
-                outlook="outlined"
-                size="small"
-                type="button"
                 onClick={handleUpdateToDo}
-            >Перезаписать
+            >{trans.editButton}
             </Button>
             <Button
-                outlook="outlined"
-                size="small"
-                type="button"
                 onClick={onEditRollback}
-            >Назад
+            >{trans.backButton}
             </Button>
         </div>
     )

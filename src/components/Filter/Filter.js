@@ -1,6 +1,7 @@
 import Button from "../Button";
 import Input from "../Input";
 import styled from "styled-components";
+import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
 
 const FilterContainer = styled('div')`
     gap: 5px;
@@ -22,6 +23,7 @@ const InputContainer = styled('div')`
 `;
 
 const Filter = ({ onFilterChange, inputValue, onClick }) => {
+    const { trans } = useLocales();
 
     const onDoneStatus = () => {
         onClick('done')
@@ -34,24 +36,24 @@ const Filter = ({ onFilterChange, inputValue, onClick }) => {
     }
 
     return (<FilterContainer>
-        <label htmlFor="search"><h4>Поиск по названию</h4></label>
+        <label htmlFor="search"><h4>{trans.searchTitle}</h4></label>
         <InputContainer>
             <Input
                 name='name'
-                placeholder="Начни вводить для фильтрации"
+                placeholder={trans.inputPlaceholder}
                 value={inputValue}
                 onChange={onFilterChange}
             /></InputContainer>
         <FilterContainerButtons>
             <Button
                 onClick={onAllStatus}
-            >Все</Button>
+            >{trans.allButtonFilter}</Button>
             <Button
                 onClick={onDoneStatus}
-            >Выполненные</Button>
+            >{trans.doneButtonFilter}</Button>
             <Button
                 onClick={onDeletedStatus}
-            >Удаленные</Button>
+            >{trans.deletedButtonFilter}</Button>
         </FilterContainerButtons>
     </FilterContainer>);
 };

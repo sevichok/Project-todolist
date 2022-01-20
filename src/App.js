@@ -6,6 +6,7 @@ import List from "./components/List";
 import Form from "./components/Form";
 
 import ThemeProvider from "./components/providers/ThemeProvider/ThemeProvider";
+import LocalesProvider from "./components/providers/LocalesProvider/LocalesProvider";
 import styled from "styled-components";
 
 const AppWrapper = styled('div')`
@@ -104,25 +105,27 @@ function App() {
 
   return (
     <ThemeProvider>
-      <AppWrapper>
-        <Header
-          listCount={filteredList.length}
-        />
-        <Filter
-          onClick={handleClick}
-          inputValue={filterValue}
-          onFilterChange={handleFilterChange}
-        />
-        <List
-          onEdit={handleEdit}
-          initialValue={todoList.name}
-          onDone={handleDone}
-          list={filteredList}
-          hideDeleteTodoBtn={filterStatus === 'deleted'}
-          onDelete={handleDelete}
-        />
-        <Form onCreateTodo={handleCreateTodo} />
-      </AppWrapper>
+      <LocalesProvider>
+        <AppWrapper>
+          <Header
+            listCount={filteredList.length}
+          />
+          <Filter
+            onClick={handleClick}
+            inputValue={filterValue}
+            onFilterChange={handleFilterChange}
+          />
+          <List
+            onEdit={handleEdit}
+            initialValue={todoList.name}
+            onDone={handleDone}
+            list={filteredList}
+            hideDeleteTodoBtn={filterStatus === 'deleted'}
+            onDelete={handleDelete}
+          />
+          <Form onCreateTodo={handleCreateTodo} />
+        </AppWrapper>
+      </LocalesProvider>
     </ThemeProvider>
   );
 };

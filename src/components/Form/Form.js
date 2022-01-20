@@ -1,6 +1,7 @@
 import Button from "../Button";
 import Input from "../Input";
 import styled from "styled-components";
+import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
 
 import { validateForm } from "./validationHelper/validateForm";
 import React, { useState } from "react";
@@ -15,18 +16,17 @@ const FormContainer = styled("div")`
     padding: 10px 10px;
     text-align: center;
 `;
-
 const FormButtonsContainer = styled("div")`
     display: flex;
     justify-content: center;
 `;
-
 
 function Form({ onCreateTodo }) {
 
     const [name, setName] = useState(' ');
     const [error, setError] = useState(validateForm(" "));
     const [touched, setTouched] = useState(false);
+    const { trans }= useLocales();
 
     const handleBlur = () => { setTouched(true) };
 
@@ -37,12 +37,10 @@ function Form({ onCreateTodo }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         if (error && !touched) {
             setTouched(true);
             return;
         }
-
         if (!error) {
             onCreateTodo(name);
             setTouched(false);
@@ -57,10 +55,10 @@ function Form({ onCreateTodo }) {
                 name="name"
                 id="create"
                 value={name}
-                label="Новое задание"
+                label={trans.newEditName}
                 error={Boolean((touched && error))}
                 description={(touched && error)}
-                placeholder="Название"
+                placeholder={trans.newEditName}
                 onBlur={handleBlur}
                 onChange={handleChange}
             />
@@ -68,7 +66,7 @@ function Form({ onCreateTodo }) {
                 <Button
                     onClick={handleSubmit}
                     type="submit"
-                >Создать
+                >{trans.createButton}
                 </Button>
             </FormButtonsContainer>
         </FormContainer>

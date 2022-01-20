@@ -1,0 +1,41 @@
+export const ru = {
+    mainTitle: "Список Туду",
+    changeTheme: "Изменить тему",
+    changeLang: "Изменить язык",
+    allButtonFilter: "Все",
+    doneButtonFilter: "Выполненные",
+    deletedButtonFilter: "Удаленные",
+    searchTitle: 'Поиск по названию',
+    editButton: "Перезаписать",
+    doneButton: "Выполнено",
+    deleteButton: "Удалить",
+    renameButton: 'Переименовать',
+    newTaskTitle: "Новое задание",
+    createButton: "Создать",
+    backButton: 'Назад',
+    newEditName: 'Новое название',
+    inputPlaceholder: "Начни вводить для фильтрации",
+    listCount: 'Количество записей',
+};
+
+export const en = {
+    mainTitle: "Todo list",
+    changeTheme: "Change Theme",
+    changeLang: "Change Lang",
+    allButtonFilter: "All",
+    doneButtonFilter: "Done",
+    deletedButtonFilter: "Deleted",
+    searchTitle: 'Search by name',
+    editButton: "Edit Name",
+    doneButton: "Done",
+    deleteButton: "Delete",
+    renameButton: 'Rename Item',
+    newTaskTitle: "New Task",
+    createButton: "Create",
+    backButton: 'Back',
+    newEditName: 'New name',
+    inputPlaceholder: "Start to input",
+    listCount: 'List count',
+};
+
+export const langs = { ru, en };

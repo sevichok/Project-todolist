@@ -2,6 +2,7 @@ import Button from "../Button";
 import React, { useState } from "react";
 import EditComponent from "../EditComponent";
 import styled from "styled-components";
+import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
 
 const ListItemContainer = styled('li')`
     background-color: white;
@@ -24,11 +25,10 @@ const ListItemButtonsContainer = styled('div')`
     align-self: center;
 `;
 
-
-
 const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, onButtonEdit }) => {
 
     const [showEditInput, setShowEditInput] = useState(false);
+    const { trans } = useLocales();
 
     const handleDelete = () => {
         onButtonDelete(id);
@@ -40,7 +40,6 @@ const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, o
 
     const handleEdit = (newName) => {
         onButtonEdit(id, newName);
-
     }
 
     const handleOpenUpdate = () => {
@@ -50,7 +49,6 @@ const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, o
     const handleEditBack = () => {
         setShowEditInput(false);
     }
-
 
     return (<ListItemContainer>
         <div className="listItemText">
@@ -69,17 +67,17 @@ const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, o
                 {!hideDeleteTodoBtn && (
                     <Button
                         onClick={handleOpenUpdate}
-                    >Изменить
+                    >{trans.renameButton}
                     </Button>)}
                 {!hideDeleteTodoBtn && (
                     <Button
                         onClick={handleDone}
-                    >Выполнено
+                    >{trans.doneButton}
                     </Button>)}
                 {!hideDeleteTodoBtn && (
                     <Button
                         onClick={handleDelete}
-                    >Удалить
+                    >{trans.deleteButton}
                     </Button>)}</>)}
         </ListItemButtonsContainer>
     </ListItemContainer>)
