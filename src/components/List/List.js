@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components";
 
 const UlContainer = styled('ul')`
-    background-color: white;
+    background-color: ${(props) => props.theme.backgroundColor.item};
     border: black 2px solid;
     border-radius: 6px;
     padding-inline-start: 0px;

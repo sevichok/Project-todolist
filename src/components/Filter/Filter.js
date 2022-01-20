@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const FilterContainer = styled('div')`
     gap: 5px;
-    background-color: white;
+    background-color: ${(props) => props.theme.backgroundColor.item};
     border: black 2px solid;
     border-radius: 6px;
     margin-top: 10px;

@@ -6,7 +6,7 @@ import { validateForm } from "./validationHelper/validateForm";
 import React, { useState } from "react";
 
 const FormContainer = styled("div")`
-    background-color: white;
+    background-color: ${(props) => props.theme.backgroundColor.item};
     border: black 2px solid;
     border-radius: 6px;
     margin-top: 10px;

@@ -5,6 +5,7 @@ import Filter from "./components/Filter";
 import List from "./components/List";
 import Form from "./components/Form";
 
+import ThemeProvider from "./components/providers/ThemeProvider/ThemeProvider";
 import styled from "styled-components";
 
 const AppWrapper = styled('div')`
@@ -12,7 +13,7 @@ const AppWrapper = styled('div')`
   font-family:'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background-color: rgb(215, 215, 215);//////////
+  background-color: ${(props) => props.theme.backgroundColor.main};
   padding: 0px 200px;
   border: black 2px solid;
   border-radius: 6px;
@@ -102,25 +103,27 @@ function App() {
   };
 
   return (
-    <AppWrapper>
-      <Header
-        listCount={filteredList.length}
-      />
-      <Filter
-        onClick={handleClick}
-        inputValue={filterValue}
-        onFilterChange={handleFilterChange}
-      />
-      <List
-        onEdit={handleEdit}
-        initialValue={todoList.name}
-        onDone={handleDone}
-        list={filteredList}
-        hideDeleteTodoBtn={filterStatus === 'deleted'}
-        onDelete={handleDelete}
-      />
-      <Form onCreateTodo={handleCreateTodo} />
-    </AppWrapper>
+    <ThemeProvider>
+      <AppWrapper>
+        <Header
+          listCount={filteredList.length}
+        />
+        <Filter
+          onClick={handleClick}
+          inputValue={filterValue}
+          onFilterChange={handleFilterChange}
+        />
+        <List
+          onEdit={handleEdit}
+          initialValue={todoList.name}
+          onDone={handleDone}
+          list={filteredList}
+          hideDeleteTodoBtn={filterStatus === 'deleted'}
+          onDelete={handleDelete}
+        />
+        <Form onCreateTodo={handleCreateTodo} />
+      </AppWrapper>
+    </ThemeProvider>
   );
 };
 
