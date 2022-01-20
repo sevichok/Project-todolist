@@ -1,7 +1,30 @@
 import Button from "../Button";
-import "./ListItemStyle.css";
 import React, { useState } from "react";
 import EditComponent from "../EditComponent";
+import styled from "styled-components";
+
+const ListItemContainer = styled('li')`
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 6px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 10px;
+`;
+const ForEditStateContainer = styled('div')`
+    padding: 5px 0px;
+
+    > button {
+        width: 50%;
+    }
+`;
+const ListItemButtonsContainer = styled('div')`
+    align-self: center;
+`;
+
+
 
 const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, onButtonEdit }) => {
 
@@ -29,46 +52,37 @@ const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, o
     }
 
 
-    return (<li className="listItem">
+    return (<ListItemContainer>
         <div className="listItemText">
             <h4>{name}</h4>
         </div>
-        <div className="listItemButtons">
-            <div className="forEditState">
+        <ListItemButtonsContainer>
+            <ForEditStateContainer>
                 {showEditInput && <>
                     <EditComponent
                         onEditRollback={handleEditBack}
                         onEditUpdate={handleEdit}
                         initialValue={name}
                         onClosePanel={handleEditBack} />
-                </>}</div>
+                </>}</ForEditStateContainer>
             {!showEditInput && (<>
                 {!hideDeleteTodoBtn && (
-                <Button
-                    outlook="outlined"
-                    size="small"
-                    type="button"
-                    onClick={handleOpenUpdate}
-                >Изменить
-                </Button>)}
+                    <Button
+                        onClick={handleOpenUpdate}
+                    >Изменить
+                    </Button>)}
                 {!hideDeleteTodoBtn && (
-                <Button
-                    outlook="outlined"
-                    size="small"
-                    type="button"
-                    onClick={handleDone}
-                >Выполнено
-                </Button>)}
+                    <Button
+                        onClick={handleDone}
+                    >Выполнено
+                    </Button>)}
                 {!hideDeleteTodoBtn && (
-                <Button
-                    outlook="outlined"
-                    size="small"
-                    type="button"
-                    onClick={handleDelete}
-                >Удалить
-                </Button>)}</>)}
-        </div>
-    </li>)
+                    <Button
+                        onClick={handleDelete}
+                    >Удалить
+                    </Button>)}</>)}
+        </ListItemButtonsContainer>
+    </ListItemContainer>)
 }
 
 export default ListItem;

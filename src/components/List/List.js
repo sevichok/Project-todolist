@@ -1,6 +1,19 @@
 import ListItem from "../ListItem";
-import "./ListStyle.css";
 import React from "react";
+import styled from "styled-components";
+
+const UlContainer = styled('ul')`
+    background-color: white;
+    border: black 2px solid;
+    border-radius: 6px;
+    padding-inline-start: 0px;
+    margin-block-start: 10px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    list-style-type: none;
+    padding: 0 10px 10px;
+`;
 
 const List = ({ hideDeleteTodoBtn,list, onDone, onDelete, onEdit }) => {
     const todoItems = list.map(({ id, name, done }) =>
@@ -13,9 +26,9 @@ const List = ({ hideDeleteTodoBtn,list, onDone, onDelete, onEdit }) => {
             onButtonEdit={onEdit}
             onButtonDone={onDone}
             onButtonDelete={onDelete} />);
-    return (<ul className="listContainer">
+    return (<UlContainer>
         {todoItems}
-    </ul>);
+    </UlContainer>);
 };
 
 export default List;

@@ -1,9 +1,25 @@
-import "./FormStyle.css";
 import Button from "../Button";
 import Input from "../Input";
+import styled from "styled-components";
 
 import { validateForm } from "./validationHelper/validateForm";
 import React, { useState } from "react";
+
+const FormContainer = styled("div")`
+    background-color: white;
+    border: black 2px solid;
+    border-radius: 6px;
+    margin-top: 10px;
+    gap: 5px;
+    font-size: 24px;
+    padding: 10px 10px;
+    text-align: center;
+`;
+
+const FormButtonsContainer = styled("div")`
+    display: flex;
+    justify-content: center;
+`;
 
 
 function Form({ onCreateTodo }) {
@@ -36,7 +52,7 @@ function Form({ onCreateTodo }) {
     };
 
     return (
-        <div className="formContainer">
+        <FormContainer>
             <Input
                 name="name"
                 id="create"
@@ -48,16 +64,14 @@ function Form({ onCreateTodo }) {
                 onBlur={handleBlur}
                 onChange={handleChange}
             />
-            <div className="divFormButtons">
+            <FormButtonsContainer>
                 <Button
                     onClick={handleSubmit}
-                    outlook="contained"
-                    size="large"
                     type="submit"
                 >Создать
                 </Button>
-            </div>
-        </div>
+            </FormButtonsContainer>
+        </FormContainer>
     )
 }
 

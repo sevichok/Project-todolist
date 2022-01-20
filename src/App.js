@@ -1,17 +1,33 @@
-import React, { useState, useCallback, useEffect, useMemo } from "react";
+import React, { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import Filter from "./components/Filter";
 import List from "./components/List";
 import Form from "./components/Form";
 
+import styled from "styled-components";
+
+const AppWrapper = styled('div')`
+  margin: auto;
+  font-family:'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: rgb(215, 215, 215);//////////
+  padding: 0px 200px;
+  border: black 2px solid;
+  border-radius: 6px;
+  margin-top: 10px;
+  padding: 10px 20px;
+  max-width: 800px;
+
+  > h6 , h5 {
+  padding-top: 5px;
+  margin: 0px;
+  }
+`;
+
 let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]");
 let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
-
-// const [filterStatus, setFilterStatus] = useState("all");
-// const [filterValue, setFilterValue] = useState("");
-// const [todoList, setTodoList] = useState(listForLocalStorage);
-// const [deletedTodoList, setDeletedTodoList] = useState(listDeletedForLocalStorage);
 
 function App() {
 
@@ -86,7 +102,7 @@ function App() {
   };
 
   return (
-    <div className="container">
+    <AppWrapper>
       <Header
         listCount={filteredList.length}
       />
@@ -104,7 +120,7 @@ function App() {
         onDelete={handleDelete}
       />
       <Form onCreateTodo={handleCreateTodo} />
-    </div>
+    </AppWrapper>
   );
 };
 

@@ -1,12 +1,21 @@
-import "./ButtonStyle.css";
-import cn from "classnames";
+import styled from "styled-components";
 
-const Button = ({ children, outlook, size, type, onClick }) => {
+const StyledButton = styled('button')`
+    font-family:Verdana, Tahoma, sans-serif;
+    border-radius: 6px;
+    width: 150px;
+
+    :hover {
+    cursor: pointer;
+    transform: scale(1.02);
+    }
+`;
+
+const Button = ({ children, onClick }) => {
     return (
-        <button
+        <StyledButton
             onClick={onClick}
-            type={type}
-            className={cn("button", outlook, size)}>{children}</button>
+        >{children}</StyledButton>
     );
 };
 

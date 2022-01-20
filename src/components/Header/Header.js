@@ -1,14 +1,22 @@
-import './HeaderStyle.css';
 import Button from '../Button';
+import styled from "styled-components";
+
+const HeaderContainer = styled('div')`
+  background-color: white;
+  border: black 2px solid;
+  border-radius: 6px;
+  text-align: center;
+  padding: 10px 10px;
+`;
 
 const Header = ({listCount}) => {
   return (
-    <div className="headerContainer">
+    <HeaderContainer>
       <h1 className="title"> Todo list</h1>
       <h4> Количество записей : {listCount}</h4>
-      <Button outlook="contained">Изменить язык</Button>
-      <Button outlook="contained">Изменить тему</Button>
-    </div>
+      <Button>Изменить язык</Button>
+      <Button>Изменить тему</Button>
+    </HeaderContainer>
   );
 };
 

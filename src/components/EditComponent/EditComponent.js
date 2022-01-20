@@ -1,9 +1,6 @@
-
 import React, { useState } from "react";
-
 import Button from "../Button";
 import Input from "../Input";
-
 
 const EditComponent = ({ initialValue, onEditRollback, onEditUpdate, onClosePanel }) => {
 
@@ -19,7 +16,6 @@ const EditComponent = ({ initialValue, onEditRollback, onEditUpdate, onClosePane
         onEditUpdate(value);
         onClosePanel();
     }
-
 
     return (
         <div>
