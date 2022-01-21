@@ -16,6 +16,10 @@ export const ru = {
     newEditName: 'Новое название',
     inputPlaceholder: "Начни вводить для фильтрации",
     listCount: 'Количество записей',
+    minLengthError:'Недостаточно символов для заполнения',
+    maxLengthError:'Превышено количество символов для заполнения',
+    zeroLengthError:'Обязательное для заполнения поле',
+
 };
 
 export const en = {
@@ -36,6 +40,10 @@ export const en = {
     newEditName: 'New name',
     inputPlaceholder: "Start to input",
     listCount: 'List count',
+    minLengthError:'Minimum of 6 symbols',
+    maxLengthError:'Maximum of 20 symbols',
+    zeroLengthError:'Need to input smth',
+    
 };
 
 export const langs = { ru, en };
