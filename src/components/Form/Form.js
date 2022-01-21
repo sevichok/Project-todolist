@@ -4,7 +4,11 @@ import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
 
 import { validateForm } from "./validationHelper/validateForm";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+
+import { createTodo } from "../../store/TodoList";
+import { useDispatch } from "react-redux";
+import store from "../../store";
 
 const FormContainer = styled("div")`
     background-color: ${(props) => props.theme.backgroundColor.item};
@@ -21,51 +25,34 @@ const FormButtonsContainer = styled("div")`
     justify-content: center;
 `;
 
-function Form({ onCreateTodo }) {
+const Form = () => {
+    const { trans } = useLocales();
+    const dispatch = useDispatch();
+    const [value, setValue] = useState("");
 
-    const [name, setName] = useState(' ');
-    const [error, setError] = useState(validateForm(" "));
-    const [touched, setTouched] = useState(false);
-    const { trans }= useLocales();
+    const handleChange = useCallback((e) => {
+        setValue(e.target.value);
+    }, []);
 
-    const handleBlur = () => { setTouched(true) };
-
-    const handleChange = (e) => {
-        setName(e.target.value);
-        setError(validateForm(e.target.value));
-    };
-
-    const handleSubmit = (e) => {
+    const handleCreate = (e) => {
         e.preventDefault();
-        if (error && !touched) {
-            setTouched(true);
-            return;
-        }
-        if (!error) {
-            onCreateTodo(name);
-            setTouched(false);
-            setName(" ");
-            setError(validateForm(""));
-        }
+
+        dispatch(createTodo(value));
+        console.log(createTodo(value));
+        setValue('');
+        console.log(store.getState());
     };
 
     return (
         <FormContainer>
             <Input
-                name="name"
-                id="create"
-                value={name}
+                value={value}
                 label={trans.newEditName}
-                error={Boolean((touched && error))}
-                description={(touched && error)}
-                placeholder={trans.newEditName}
-                onBlur={handleBlur}
                 onChange={handleChange}
             />
             <FormButtonsContainer>
                 <Button
-                    onClick={handleSubmit}
-                    type="submit"
+                    onClick={handleCreate}
                 >{trans.createButton}
                 </Button>
             </FormButtonsContainer>

@@ -42,17 +42,17 @@ const Filter = ({ onFilterChange, inputValue, onClick }) => {
                 name='name'
                 placeholder={trans.inputPlaceholder}
                 value={inputValue}
-                onChange={onFilterChange}
+                // onChange={onFilterChange}
             /></InputContainer>
         <FilterContainerButtons>
             <Button
-                onClick={onAllStatus}
+                // onClick={onAllStatus}
             >{trans.allButtonFilter}</Button>
             <Button
-                onClick={onDoneStatus}
+                // onClick={onDoneStatus}
             >{trans.doneButtonFilter}</Button>
             <Button
-                onClick={onDeletedStatus}
+                // onClick={onDeletedStatus}
             >{trans.deletedButtonFilter}</Button>
         </FilterContainerButtons>
     </FilterContainer>);

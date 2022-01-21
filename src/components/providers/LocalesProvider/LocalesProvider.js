@@ -1,5 +1,5 @@
 import React, { createContext, useState, useCallback, useContext } from "react";
-import { langs } from "../LocalesProvider/Translations";
+import { langs } from "./Translations";
 
 const LocalesContext = createContext({});
 export const useLocales = () => useContext(LocalesContext);

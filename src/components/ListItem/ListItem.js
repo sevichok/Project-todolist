@@ -3,9 +3,12 @@ import React, { useState } from "react";
 import EditComponent from "../EditComponent";
 import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
+import { useDispatch } from "react-redux";
+import { doneTodo, deleteTodo } from "../../store/TodoList";
+import store from "../../store"
 
 const ListItemContainer = styled('li')`
-    background-color: white;
+    background-color: ${({ completed }) => (completed ? "gold" : "transparent")};
     border: black 1px solid;
     border-radius: 6px;
     margin-top: 10px;
@@ -25,22 +28,26 @@ const ListItemButtonsContainer = styled('div')`
     align-self: center;
 `;
 
-const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, onButtonEdit }) => {
+const ListItem = ({ title, id, completed }) => {
 
     const [showEditInput, setShowEditInput] = useState(false);
     const { trans } = useLocales();
+    const dispatch = useDispatch();
 
     const handleDelete = () => {
-        onButtonDelete(id);
+        dispatch(deleteTodo(id));
+        console.log(deleteTodo(id));
     };
 
     const handleDone = () => {
-        onButtonDone(id);
+        dispatch(doneTodo(id));
+        console.log(doneTodo(id));
+        console.log(store.getState());
     };
 
-    const handleEdit = (newName) => {
-        onButtonEdit(id, newName);
-    }
+    // const handleEdit = (newName) => {
+    //     onButtonEdit(id, newName);
+    // }
 
     const handleOpenUpdate = () => {
         setShowEditInput(true);
@@ -50,35 +57,31 @@ const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, o
         setShowEditInput(false);
     }
 
-    return (<ListItemContainer>
-        <div className="listItemText">
-            <h4>{name}</h4>
-        </div>
+    return (<ListItemContainer completed={completed}>
+        <h4>{title}</h4>
         <ListItemButtonsContainer>
             <ForEditStateContainer>
                 {showEditInput && <>
                     <EditComponent
                         onEditRollback={handleEditBack}
-                        onEditUpdate={handleEdit}
-                        initialValue={name}
-                        onClosePanel={handleEditBack} />
-                </>}</ForEditStateContainer>
-            {!showEditInput && (<>
-                {!hideDeleteTodoBtn && (
-                    <Button
-                        onClick={handleOpenUpdate}
-                    >{trans.renameButton}
-                    </Button>)}
-                {!hideDeleteTodoBtn && (
-                    <Button
-                        onClick={handleDone}
-                    >{trans.doneButton}
-                    </Button>)}
-                {!hideDeleteTodoBtn && (
-                    <Button
-                        onClick={handleDelete}
-                    >{trans.deleteButton}
-                    </Button>)}</>)}
+                        // onEditUpdate={handleEdit}
+                        initialValue={title}
+                        onClosePanel={handleEditBack}
+                    />
+                </>}
+            </ForEditStateContainer>
+            <Button
+            // onClick={handleOpenUpdate}
+            >{trans.renameButton}
+            </Button>
+            <Button
+                onClick={handleDone}
+            >{trans.doneButton}
+            </Button>
+            <Button
+                onClick={handleDelete}
+            >{trans.deleteButton}
+            </Button>
         </ListItemButtonsContainer>
     </ListItemContainer>)
 }

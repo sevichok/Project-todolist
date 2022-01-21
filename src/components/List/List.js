@@ -1,6 +1,8 @@
 import ListItem from "../ListItem";
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { getSlice } from "../../store/TodoList";
 
 const UlContainer = styled('ul')`
     background-color: ${(props) => props.theme.backgroundColor.item};
@@ -15,17 +17,15 @@ const UlContainer = styled('ul')`
     padding: 0 10px 10px;
 `;
 
-const List = ({ hideDeleteTodoBtn,list, onDone, onDelete, onEdit }) => {
-    const todoItems = list.map(({ id, name, done }) =>
+const List = () => {
+    const { todoList } = useSelector(getSlice);
+
+    const todoItems = todoList.map((TodoItem) =>
         <ListItem
-            key={id}
-            id={id}
-            hideDeleteTodoBtn={hideDeleteTodoBtn}
-            name={name}
-            done={done}
-            onButtonEdit={onEdit}
-            onButtonDone={onDone}
-            onButtonDelete={onDelete} />);
+            key={TodoItem.id}
+            {...TodoItem}
+        />);
+
     return (<UlContainer>
         {todoItems}
     </UlContainer>);
