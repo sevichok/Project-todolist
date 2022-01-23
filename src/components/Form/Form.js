@@ -3,7 +3,7 @@ import Input from "../Input";
 import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
 
-import { validateForm } from "./validationHelper/validateForm";
+// import { validateForm } from "./validationHelper/validateForm";
 import React, { useState, useCallback } from "react";
 
 import { createTodo } from "../../store/TodoList";

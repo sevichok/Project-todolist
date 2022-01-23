@@ -25,15 +25,15 @@ const InputContainer = styled('div')`
 const Filter = ({ onFilterChange, inputValue, onClick }) => {
     const { trans } = useLocales();
 
-    const onDoneStatus = () => {
-        onClick('done')
-    }
-    const onAllStatus = () => {
-        onClick('all')
-    }
-    const onDeletedStatus = () => {
-        onClick('deleted')
-    }
+    // const onDoneStatus = () => {
+    //     onClick('done')
+    // }
+    // const onAllStatus = () => {
+    //     onClick('all')
+    // }
+    // const onDeletedStatus = () => {
+    //     onClick('deleted')
+    // }
 
     return (<FilterContainer>
         <label htmlFor="search"><h4>{trans.searchTitle}</h4></label>

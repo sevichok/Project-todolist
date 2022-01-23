@@ -37,6 +37,7 @@ const ListItem = ({ title, id, completed }) => {
     const handleDelete = () => {
         dispatch(deleteTodo(id));
         console.log(deleteTodo(id));
+        console.log(store.getState(id));
     };
 
     const handleDone = () => {
@@ -49,9 +50,9 @@ const ListItem = ({ title, id, completed }) => {
     //     onButtonEdit(id, newName);
     // }
 
-    const handleOpenUpdate = () => {
-        setShowEditInput(true);
-    }
+    // const handleOpenUpdate = () => {
+    //     setShowEditInput(true);
+    // }
 
     const handleEditBack = () => {
         setShowEditInput(false);

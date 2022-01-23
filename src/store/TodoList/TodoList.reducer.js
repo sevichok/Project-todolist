@@ -3,8 +3,12 @@ import { DELETE_TODO } from "./TodoList.actions";
 import { DONE_TODO } from "./TodoList.actions";
 import { v4 as uuidv4 } from "uuid";
 
+let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]");
+let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
+
 export const initialState = {
-    todoList: [],
+    todoList: listForLocalStorage,
+    deletedTodoList: listDeletedForLocalStorage,
 };
 
 export const TodoListReducer = (state = initialState, action) => {
@@ -17,6 +21,7 @@ export const TodoListReducer = (state = initialState, action) => {
                     id: createId,
                     title: action.payload,
                     completed: false,
+                    status: "active",
                 }),
             };
         case DELETE_TODO:
@@ -24,10 +29,13 @@ export const TodoListReducer = (state = initialState, action) => {
                 (todoItem) => todoItem.id === action.payload
             );
             if (deletedTodoIndex < 0) { return state }
-            const deletedTodo = state.todoList.splice(deletedTodoIndex, 1)
+            const deletedTodo = state.todoList.splice(deletedTodoIndex, 1);
             return {
                 ...state,
                 todoList: state.todoList.slice(),
+                deletedTodoList: state.deletedTodoList.concat({
+                    ...deletedTodo,
+                })
             };
         case DONE_TODO:
             return {
