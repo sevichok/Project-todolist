@@ -1,1 +1,1 @@
-export const getSlice = (state) => state.todoList;
+export const getSlice = (state) => state?.todo;

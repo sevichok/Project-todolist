@@ -2,6 +2,9 @@ import Button from "../Button";
 import Input from "../Input";
 import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
+import store from "../../store";
+import { useDispatch } from "react-redux";
+import { filterAll, filterDone, filterDeleted } from "../../store/TodoList";
 
 const FilterContainer = styled('div')`
     gap: 5px;
@@ -22,18 +25,25 @@ const InputContainer = styled('div')`
     justify-content: center;
 `;
 
-const Filter = ({ onFilterChange, inputValue, onClick }) => {
+const Filter = ({ inputValue, id }) => {
     const { trans } = useLocales();
+    const dispatch = useDispatch();
 
-    // const onDoneStatus = () => {
-    //     onClick('done')
-    // }
-    // const onAllStatus = () => {
-    //     onClick('all')
-    // }
-    // const onDeletedStatus = () => {
-    //     onClick('deleted')
-    // }
+    const onDoneStatus = (id) => {
+        dispatch(filterDone(id));
+        console.log(filterDone(id))
+        console.log(store.getState());
+    }
+    const onAllStatus = (id) => {
+        dispatch(filterAll(id));
+        console.log(filterAll(id))
+        console.log(store.getState());
+    }
+    const onDeletedStatus = (id) => {
+        dispatch(filterDeleted(id));
+        console.log(filterDeleted(id))
+        console.log(store.getState());
+    }
 
     return (<FilterContainer>
         <label htmlFor="search"><h4>{trans.searchTitle}</h4></label>
@@ -42,17 +52,17 @@ const Filter = ({ onFilterChange, inputValue, onClick }) => {
                 name='name'
                 placeholder={trans.inputPlaceholder}
                 value={inputValue}
-                // onChange={onFilterChange}
+            // onChange={onFilterChange}
             /></InputContainer>
         <FilterContainerButtons>
             <Button
-                // onClick={onAllStatus}
+                onClick={onAllStatus}
             >{trans.allButtonFilter}</Button>
             <Button
-                // onClick={onDoneStatus}
+                onClick={onDoneStatus}
             >{trans.doneButtonFilter}</Button>
             <Button
-                // onClick={onDeletedStatus}
+                onClick={onDeletedStatus}
             >{trans.deletedButtonFilter}</Button>
         </FilterContainerButtons>
     </FilterContainer>);

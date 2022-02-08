@@ -2,21 +2,26 @@ import React, { useState } from "react";
 import Button from "../Button";
 import Input from "../Input";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
+import { useDispatch } from "react-redux";
+import { updateTodo } from "../../store/TodoList";
+import store from "../../store"
 
-const EditComponent = ({ initialValue, onEditRollback, onEditUpdate, onClosePanel }) => {
+const EditComponent = ({ initialValue, onEditRollback }) => {
 
     const [value, setValue] = useState(initialValue);
     const { trans } = useLocales();
+    const dispatch = useDispatch();
 
     const handleChange = (e) => {
         setValue(
             e.target.value
         );
     }
-
-    const handleUpdateToDo = () => {
-        onEditUpdate(value);
-        onClosePanel();
+    const handleEdit = () => {
+        dispatch(updateTodo(value));
+        console.log(updateTodo(value));
+        console.log(store.getState());
+        onEditRollback();
     }
 
     return (
@@ -26,7 +31,7 @@ const EditComponent = ({ initialValue, onEditRollback, onEditUpdate, onClosePane
                 placeholder={trans.newEditName}
                 onChange={handleChange} />
             <Button
-                onClick={handleUpdateToDo}
+                onClick={handleEdit}
             >{trans.editButton}
             </Button>
             <Button

@@ -20,7 +20,7 @@ const UlContainer = styled('ul')`
 const List = () => {
     const { todoList } = useSelector(getSlice);
 
-    const todoItems = todoList.map((TodoItem) =>
+    const todoItems = todoList?.map((TodoItem) =>
         <ListItem
             key={TodoItem.id}
             {...TodoItem}

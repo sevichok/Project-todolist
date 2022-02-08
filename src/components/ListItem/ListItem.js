@@ -8,7 +8,7 @@ import { doneTodo, deleteTodo } from "../../store/TodoList";
 import store from "../../store"
 
 const ListItemContainer = styled('li')`
-    background-color: ${({ completed }) => (completed ? "gold" : "transparent")};
+    background-color: ${({ completed }) => (completed ? "#5aff57" : "transparent")};
     border: black 1px solid;
     border-radius: 6px;
     margin-top: 10px;
@@ -28,6 +28,8 @@ const ListItemButtonsContainer = styled('div')`
     align-self: center;
 `;
 
+console.log("INITIAL STATE", store.getState());
+
 const ListItem = ({ title, id, completed }) => {
 
     const [showEditInput, setShowEditInput] = useState(false);
@@ -46,13 +48,9 @@ const ListItem = ({ title, id, completed }) => {
         console.log(store.getState());
     };
 
-    // const handleEdit = (newName) => {
-    //     onButtonEdit(id, newName);
-    // }
-
-    // const handleOpenUpdate = () => {
-    //     setShowEditInput(true);
-    // }
+    const handleEditOpen = () => {
+        setShowEditInput(true);
+    }
 
     const handleEditBack = () => {
         setShowEditInput(false);
@@ -60,30 +58,31 @@ const ListItem = ({ title, id, completed }) => {
 
     return (<ListItemContainer completed={completed}>
         <h4>{title}</h4>
-        <ListItemButtonsContainer>
+        {<ListItemButtonsContainer>
             <ForEditStateContainer>
                 {showEditInput && <>
                     <EditComponent
                         onEditRollback={handleEditBack}
-                        // onEditUpdate={handleEdit}
                         initialValue={title}
-                        onClosePanel={handleEditBack}
                     />
                 </>}
             </ForEditStateContainer>
-            <Button
-            // onClick={handleOpenUpdate}
-            >{trans.renameButton}
-            </Button>
-            <Button
-                onClick={handleDone}
-            >{trans.doneButton}
-            </Button>
-            <Button
-                onClick={handleDelete}
-            >{trans.deleteButton}
-            </Button>
-        </ListItemButtonsContainer>
+            {!showEditInput && <>
+                <Button
+                    onClick={handleEditOpen}
+                >{trans.renameButton}
+                </Button></>}
+            {!showEditInput && <>
+                <Button
+                    onClick={handleDone}
+                >{trans.doneButton}
+                </Button></>}
+            {!showEditInput && <>
+                <Button
+                    onClick={handleDelete}
+                >{trans.deleteButton}
+                </Button></>}
+        </ListItemButtonsContainer>}
     </ListItemContainer>)
 }
 
