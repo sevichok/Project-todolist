@@ -2,9 +2,6 @@ import { CREATE_TODO } from "./TodoList.actions";
 import { DELETE_TODO } from "./TodoList.actions";
 import { DONE_TODO } from "./TodoList.actions";
 import { UPDATE_TODO } from "./TodoList.actions";
-import { FILTER_ALL } from "./TodoList.actions";
-import { FILTER_DONE } from "./TodoList.actions";
-import { FILTER_DELETED } from "./TodoList.actions";
 import { v4 as uuidv4 } from "uuid";
 
 // let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]");
@@ -13,7 +10,6 @@ import { v4 as uuidv4 } from "uuid";
 export const initialState = {
     todoList: [],
     deletedTodoList: [],
-    filtered: 'all',
 };
 
 export const TodoListReducer = (state = initialState, action) => {
@@ -26,7 +22,6 @@ export const TodoListReducer = (state = initialState, action) => {
                     id: createId,
                     title: action.payload,
                     completed: false,
-                    status: "active",
                 }),
             };
         case DELETE_TODO:
@@ -54,25 +49,6 @@ export const TodoListReducer = (state = initialState, action) => {
                 todoList: state.todoList.map((todoItem) =>
                     todoItem.title ? { ...todoItem, title: action.payload } : todoItem
                 ),
-            };
-        case FILTER_ALL:
-            const filteredAllList = state.todoList.filter((item) => item.status === "active")
-            return {
-                ...state,
-                todoList: filteredAllList,
-            };
-        case FILTER_DONE:
-            const filteredDoneList = state.todoList.filter((item) => item.completed === true)
-            return {
-                ...state,
-                todoList: filteredDoneList,
-                filtered: 'done',
-            };
-        case FILTER_DELETED:
-            return {
-                ...state,
-                todoList: state.deletedTodoList,
-                filtered: 'deleted',
             };
         default:
             return state;

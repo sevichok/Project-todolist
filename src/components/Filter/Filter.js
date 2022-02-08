@@ -2,9 +2,7 @@ import Button from "../Button";
 import Input from "../Input";
 import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
-import store from "../../store";
-import { useDispatch } from "react-redux";
-import { filterAll, filterDone, filterDeleted } from "../../store/TodoList";
+import { useState } from "react";
 
 const FilterContainer = styled('div')`
     gap: 5px;
@@ -25,24 +23,18 @@ const InputContainer = styled('div')`
     justify-content: center;
 `;
 
-const Filter = ({ inputValue, id }) => {
+const Filter = ({ inputValue, onFilterChange }) => {
     const { trans } = useLocales();
-    const dispatch = useDispatch();
+    const [filterStatus, setFilterStatus] = useState("all");
 
-    const onDoneStatus = (id) => {
-        dispatch(filterDone(id));
-        console.log(filterDone(id))
-        console.log(store.getState());
+    const onDoneStatus = () => {
+        setFilterStatus('done')
     }
-    const onAllStatus = (id) => {
-        dispatch(filterAll(id));
-        console.log(filterAll(id))
-        console.log(store.getState());
+    const onAllStatus = () => {
+        setFilterStatus('all')
     }
-    const onDeletedStatus = (id) => {
-        dispatch(filterDeleted(id));
-        console.log(filterDeleted(id))
-        console.log(store.getState());
+    const onDeletedStatus = () => {
+        setFilterStatus('deleted')
     }
 
     return (<FilterContainer>
@@ -52,7 +44,7 @@ const Filter = ({ inputValue, id }) => {
                 name='name'
                 placeholder={trans.inputPlaceholder}
                 value={inputValue}
-            // onChange={onFilterChange}
+                onChange={onFilterChange}
             /></InputContainer>
         <FilterContainerButtons>
             <Button
