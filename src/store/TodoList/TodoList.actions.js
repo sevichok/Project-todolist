@@ -6,6 +6,7 @@ export const UPDATE_TODO = "UPDATE_TODO";
 export const FILTER_ALL = "FILTER_ALL";
 export const FILTER_DONE = "FILTER_DONE";
 export const FILTER_DELETED = "FILTER_DELETED";
+export const FILTER_VALUE = "FILTER_VALUE";
 
 
 export const createTodo = (title) => ({
@@ -23,9 +24,10 @@ export const doneTodo = (id) => ({
   payload: id,
 });
 
-export const updateTodo = (title) => ({
+export const updateTodo = (title, id) => ({
   type: UPDATE_TODO,
   payload: title,
+  key: id,
 });
 
 export const filterAll = (id) => ({
@@ -41,4 +43,9 @@ export const filterDone = (id) => ({
 export const filterDeleted = (id) => ({
   type: FILTER_DELETED,
   payload: id,
+});
+
+export const filterValue = (value) => ({
+  type: FILTER_VALUE,
+  payload: value,
 });

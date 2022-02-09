@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 import { FILTER_ALL } from "./TodoList.actions";
 import { FILTER_DONE } from "./TodoList.actions";
 import { FILTER_DELETED } from "./TodoList.actions";
+import { FILTER_VALUE } from "./TodoList.actions";
 
 // let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]");
 // let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
@@ -52,7 +53,7 @@ export const TodoListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todoList: state.todoList.map((todoItem) =>
-                    todoItem !== action.payload ? { ...todoItem, title: action.payload } : todoItem
+                    todoItem.id === action.key ? { ...todoItem, ...action.payload } : todoItem
                 ),
             };
         case FILTER_ALL:
@@ -69,6 +70,11 @@ export const TodoListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filterStatus: 'deleted',
+            };
+        case FILTER_VALUE:
+            return {
+                ...state,
+                filterValue: action.payload,
             };
         default:
             return state;

@@ -2,10 +2,9 @@ import Button from "../Button";
 import Input from "../Input";
 import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
-// import { useState } from "react";
 import store from "../../store";
 import { useDispatch } from "react-redux";
-import { filterAll, filterDone, filterDeleted } from "../../store/TodoList";
+import { filterAll, filterDone, filterDeleted, filterValue } from "../../store/TodoList";
 
 const FilterContainer = styled('div')`
     gap: 5px;
@@ -26,10 +25,10 @@ const InputContainer = styled('div')`
     justify-content: center;
 `;
 
-const Filter = ({ inputValue, onFilterChange }) => {
+const Filter = () => {
     const { trans } = useLocales();
     const dispatch = useDispatch();
-    
+
     const onDoneStatus = (id) => {
         dispatch(filterDone(id));
         console.log(filterDone(id))
@@ -46,14 +45,20 @@ const Filter = ({ inputValue, onFilterChange }) => {
         console.log(store.getState());
     }
 
+    const handleFilterChange = (e) => {
+        console.log(e.target.value);
+        dispatch(filterValue(e.target.value));
+        console.log(filterValue(e.target.value))
+        console.log(store.getState());
+    };
+
     return (<FilterContainer>
         <label htmlFor="search"><h4>{trans.searchTitle}</h4></label>
         <InputContainer>
             <Input
                 name='name'
                 placeholder={trans.inputPlaceholder}
-                value={inputValue}
-                onChange={onFilterChange}
+                onChange={handleFilterChange}
             /></InputContainer>
         <FilterContainerButtons>
             <Button
@@ -70,14 +75,3 @@ const Filter = ({ inputValue, onFilterChange }) => {
 };
 
 export default Filter;
-
-    // const [filterStatus, setFilterStatus] = useState("all");
-    // const onDoneStatus = () => {
-    //     setFilterStatus('done')
-    // }
-    // const onAllStatus = () => {
-    //     setFilterStatus('all')
-    // }
-    // const onDeletedStatus = () => {
-    //     setFilterStatus('deleted')
-    // }

@@ -2,7 +2,7 @@ import ListItem from "../ListItem";
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { getSlice, getFilteredTodoList } from "../../store/TodoList";
+import { getFilteredTodoList } from "../../store/TodoList";
 
 const UlContainer = styled('ul')`
     background-color: ${(props) => props.theme.backgroundColor.item};
@@ -18,10 +18,10 @@ const UlContainer = styled('ul')`
 `;
 
 const List = () => {
-    const { todoList } = useSelector(getSlice);
+    // const { todoList } = useSelector(getSlice);
     const filteredList = useSelector(getFilteredTodoList);
 
-    const todoItems = todoList?.map((TodoItem) =>
+    const todoItems = filteredList?.map((TodoItem) =>
         <ListItem
             key={TodoItem.id}
             {...TodoItem}

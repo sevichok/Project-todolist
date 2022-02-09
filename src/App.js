@@ -8,10 +8,6 @@ import ThemeProvider from "./components/providers/ThemeProvider/ThemeProvider";
 import LocalesProvider from "./components/providers/LocalesProvider/LocalesProvider";
 import styled from "styled-components";
 
-import { useState } from "react";
-// import { useSelector } from "react-redux";
-// import { getSlice, getFilteredTodoList } from "./store/TodoList";
-
 const AppWrapper = styled('div')`
   margin: auto;
   font-family:'Segoe UI', 'Roboto', 'Oxygen',
@@ -32,25 +28,14 @@ const AppWrapper = styled('div')`
 `;
 
 const App = () => {
-  const [filterValue, setFilterValue] = useState("");
-  // const filteredList = useSelector(getFilteredTodoList);
-
-  const handleFilterChange = (e) => {
-    setFilterValue(e.target.value)
-  };
 
   return (
     <ThemeProvider>
       <LocalesProvider>
         <AppWrapper>
-          <Header
-          />
-          <Filter
-            inputValue={filterValue}
-            onFilterChange={handleFilterChange}
-          />
-          <List
-          />
+          <Header />
+          <Filter />
+          <List />
           <Form />
         </AppWrapper>
       </LocalesProvider>

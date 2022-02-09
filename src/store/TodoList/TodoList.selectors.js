@@ -2,44 +2,20 @@ export const getSlice = (state) => state.todo;
 
 export const getFilteredTodoList = (state) => {
     let initialList;
-    if (state.filterStatus === 'done') {
+    if (state.todo.filterStatus === 'done') {
         console.log('Pressed filter done');
-        initialList = state.todoList.filter((todoItem) => todoItem.done === true);
+        initialList = state.todo.todoList.filter((todoItem) => todoItem.completed === true);
     }
-    if (state.filterStatus === 'all') {
+    if (state.todo.filterStatus === 'all') {
         console.log('Pressed filter all');
-        initialList = state.todoList;
+        initialList = state.todo.todoList;
     }
-    if (state.filterStatus === 'deleted') {
+    if (state.todo.filterStatus === 'deleted') {
         console.log('Pressed filter deleted');
-        initialList = state.deletedTodoList
+        initialList = state.todo.deletedTodoList
     }
-    if (state.filterValue) {
+    if (state.todo.filterValue) {
         initialList = initialList.filter((todoItem) => todoItem.title.toLowerCase().includes(state.todo.filterValue.toLowerCase()))
     }
     return initialList
 }
-// const filteredList = useSelector(getFilteredTodoList);
-
-
-// const getFilteredToDo = () => {
-//     let initialList;
-//     if (filterStatus === 'done') {
-//       console.log('Pressed filter done');
-//       initialList = todoList.filter((todoItem) => todoItem.done === true);
-//     }
-//     if (filterStatus === 'all') {
-//       console.log('Pressed filter all');
-//       initialList = todoList;
-//     }
-//     if (filterStatus === 'deleted') {
-//       console.log('Pressed filter deleted');
-//       initialList = deletedTodoList
-//     }
-//     if (filterValue) {
-//       initialList = initialList.filter((todoItem) => todoItem.name.toLowerCase().includes(filterValue.toLowerCase()))
-//     }
-//     return initialList
-//   };
-
-//   const filteredList = getFilteredToDo();
