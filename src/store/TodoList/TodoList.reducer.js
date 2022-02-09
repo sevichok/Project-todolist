@@ -49,11 +49,12 @@ export const TodoListReducer = (state = initialState, action) => {
                 ),
             };
         case UPDATE_TODO:
-            console.log(action.payload)
+            console.log(action.payload.title )
+            console.log(action.payload.id)
             return {
                 ...state,
                 todoList: state.todoList.map((todoItem) =>
-                    todoItem.id === action.key ? { ...todoItem, ...action.payload } : todoItem
+                    todoItem.id === action.payload.id ? { ...todoItem, title: action.payload.title } : todoItem
                 ),
             };
         case FILTER_ALL:

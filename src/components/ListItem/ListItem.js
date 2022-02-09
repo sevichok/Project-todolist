@@ -64,6 +64,7 @@ const ListItem = ({ title, id, completed }) => {
                     <EditComponent
                         onEditRollback={handleEditBack}
                         initialValue={title}
+                        editingId={id}
                     />
                 </>}
             </ForEditStateContainer>

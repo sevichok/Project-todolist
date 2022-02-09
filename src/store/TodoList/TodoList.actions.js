@@ -26,8 +26,10 @@ export const doneTodo = (id) => ({
 
 export const updateTodo = (title, id) => ({
   type: UPDATE_TODO,
-  payload: title,
-  key: id,
+  payload: {
+    title,
+    id,
+  },
 });
 
 export const filterAll = (id) => ({

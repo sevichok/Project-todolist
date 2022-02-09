@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { updateTodo } from "../../store/TodoList";
 import store from "../../store"
 
-const EditComponent = ({ initialValue, onEditRollback }) => {
+const EditComponent = ({ initialValue, onEditRollback, editingId }) => {
 
     const [value, setValue] = useState(initialValue);
     const { trans } = useLocales();
@@ -18,8 +18,8 @@ const EditComponent = ({ initialValue, onEditRollback }) => {
         );
     }
     const handleEdit = () => {
-        dispatch(updateTodo(value));
-        console.log(updateTodo(value));
+        dispatch(updateTodo(value, editingId));
+        console.log(updateTodo(value, editingId));
         console.log(store.getState());
         onEditRollback();
     }
