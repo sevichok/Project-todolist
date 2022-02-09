@@ -2,7 +2,10 @@ import Button from "../Button";
 import Input from "../Input";
 import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
-import { useState } from "react";
+// import { useState } from "react";
+import store from "../../store";
+import { useDispatch } from "react-redux";
+import { filterAll, filterDone, filterDeleted } from "../../store/TodoList";
 
 const FilterContainer = styled('div')`
     gap: 5px;
@@ -25,16 +28,22 @@ const InputContainer = styled('div')`
 
 const Filter = ({ inputValue, onFilterChange }) => {
     const { trans } = useLocales();
-    const [filterStatus, setFilterStatus] = useState("all");
-
-    const onDoneStatus = () => {
-        setFilterStatus('done')
+    const dispatch = useDispatch();
+    
+    const onDoneStatus = (id) => {
+        dispatch(filterDone(id));
+        console.log(filterDone(id))
+        console.log(store.getState());
     }
-    const onAllStatus = () => {
-        setFilterStatus('all')
+    const onAllStatus = (id) => {
+        dispatch(filterAll(id));
+        console.log(filterAll(id))
+        console.log(store.getState());
     }
-    const onDeletedStatus = () => {
-        setFilterStatus('deleted')
+    const onDeletedStatus = (id) => {
+        dispatch(filterDeleted(id));
+        console.log(filterDeleted(id))
+        console.log(store.getState());
     }
 
     return (<FilterContainer>
@@ -61,3 +70,14 @@ const Filter = ({ inputValue, onFilterChange }) => {
 };
 
 export default Filter;
+
+    // const [filterStatus, setFilterStatus] = useState("all");
+    // const onDoneStatus = () => {
+    //     setFilterStatus('done')
+    // }
+    // const onAllStatus = () => {
+    //     setFilterStatus('all')
+    // }
+    // const onDeletedStatus = () => {
+    //     setFilterStatus('deleted')
+    // }

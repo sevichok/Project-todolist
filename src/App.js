@@ -9,8 +9,8 @@ import LocalesProvider from "./components/providers/LocalesProvider/LocalesProvi
 import styled from "styled-components";
 
 import { useState } from "react";
-import { useSelector } from "react-redux";
-import { getSlice, getFilteredTodoList } from "./store/TodoList";
+// import { useSelector } from "react-redux";
+// import { getSlice, getFilteredTodoList } from "./store/TodoList";
 
 const AppWrapper = styled('div')`
   margin: auto;
@@ -33,8 +33,7 @@ const AppWrapper = styled('div')`
 
 const App = () => {
   const [filterValue, setFilterValue] = useState("");
-
-  const filteredList = useSelector(getFilteredTodoList);
+  // const filteredList = useSelector(getFilteredTodoList);
 
   const handleFilterChange = (e) => {
     setFilterValue(e.target.value)
@@ -45,14 +44,12 @@ const App = () => {
       <LocalesProvider>
         <AppWrapper>
           <Header
-          // listCount={filteredList.length}
           />
           <Filter
             inputValue={filterValue}
             onFilterChange={handleFilterChange}
           />
           <List
-            list={filteredList}
           />
           <Form />
         </AppWrapper>
