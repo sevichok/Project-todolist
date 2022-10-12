@@ -10,24 +10,19 @@ const ListItem = ({ hideDeleteTodoBtn, name, id, onButtonDone, onButtonDelete, o
     const handleDelete = () => {
         onButtonDelete(id);
     };
-
     const handleDone = () => {
         onButtonDone(id);
     };
-
     const handleEdit = (newName) => {
         onButtonEdit(id, newName);
 
     }
-
     const handleOpenUpdate = () => {
         setShowEditInput(true);
     }
-
     const handleEditBack = () => {
         setShowEditInput(false);
     }
-
 
     return (<li className="listItem">
         <div className="listItemText">

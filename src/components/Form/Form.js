@@ -1,10 +1,8 @@
 import "./FormStyle.css";
 import Button from "../Button";
 import Input from "../Input";
-
 import { validateForm } from "./validationHelper/validateForm";
 import React, { useState } from "react";
-
 
 function Form({ onCreateTodo }) {
 
@@ -26,7 +24,6 @@ function Form({ onCreateTodo }) {
             setTouched(true);
             return;
         }
-
         if (!error) {
             onCreateTodo(name);
             setTouched(false);

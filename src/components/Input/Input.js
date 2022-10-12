@@ -1,6 +1,5 @@
 import "./InputStyle.css";
 import React from "react";
-
 import cn from 'classnames'
 
 const Input = ({ error, label, description, ...inputProps }) => {
