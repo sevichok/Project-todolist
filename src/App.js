@@ -5,27 +5,19 @@ import Filter from "./components/Filter";
 import List from "./components/List";
 import Form from "./components/Form";
 
-
-
-let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]"); // список передаваемый в localStorage
+let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]");
 let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
-
-// const defaultTodo = {
-//   id: uuidv4(),
-//   name: "default todo",
-//   done: false,
-// };
 
 class App extends React.Component {
   state = {
-    filterStatus: "all", // deleted, done
+    filterStatus: "all",
     filterValue: "",
     todoList: listForLocalStorage,
     deletedTodoList: listDeletedForLocalStorage,
   };
 
   handleCreateTodo = (name) => {
-    const createId = uuidv4(); //Math.floor(Math.random() * 10000), uuidv4()
+    const createId = uuidv4();
 
     this.setState({
       todoList: this.state.todoList.concat({
@@ -39,7 +31,6 @@ class App extends React.Component {
   };
 
   handleDone = (id) => {
-    console.log(`Pressed button Done on item with ID: ${id}`);
 
     this.setState((state) => ({
       todoList: state.todoList.map((todoItem) =>
@@ -50,7 +41,6 @@ class App extends React.Component {
   };
 
   handleEdit = (id, name) => {
-    console.log(`Pressed button Edit on item with name: ${name}`);
 
     this.setState((state) => ({
       todoList: state.todoList.map((todoItem) => todoItem.id === id ? { ...todoItem, name } : todoItem),
@@ -59,7 +49,6 @@ class App extends React.Component {
   };
 
   handleDelete = (id) => {
-    console.log(`Pressed button Delete on item with ID: ${id}`);
 
     this.setState((state) => {
       const deletedTodoIndex = state.todoList.findIndex(
@@ -86,15 +75,12 @@ class App extends React.Component {
     let todoList = [];
 
     if (this.state.filterStatus === 'done') {
-      console.log('Pressed filter done')
       todoList = this.state.todoList.filter((todoItem) => todoItem.done === true)
     }
     if (this.state.filterStatus === 'all') {
-      console.log('Pressed filter all')
       todoList = this.state.todoList
     }
     if (this.state.filterStatus === 'deleted') {
-      console.log('Pressed filter deleted')
       todoList = this.state.deletedTodoList
     }
     if (this.state.filterValue) {
@@ -116,7 +102,6 @@ class App extends React.Component {
 
   render() {
     const todoList = this.getFilteredToDo();
-    console.log(this.getFilteredToDo());
 
     return (
       <div className="container">

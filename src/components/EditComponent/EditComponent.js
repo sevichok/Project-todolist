@@ -1,6 +1,4 @@
-
 import React, { useState } from "react";
-
 import Button from "../Button";
 import Input from "../Input";
 
@@ -10,16 +8,13 @@ const EditComponent = ({ initialValue, onEditRollback, onEditUpdate, onClosePane
     const [value, setValue] = useState(initialValue);
 
     const handleChange = (e) => {
-        setValue(
-            e.target.value
-        );
+        setValue(e.target.value);
     }
 
     const handleUpdateToDo = () => {
         onEditUpdate(value);
         onClosePanel();
     }
-
 
     return (
         <div>

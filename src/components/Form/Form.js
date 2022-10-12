@@ -1,7 +1,6 @@
 import "./FormStyle.css";
 import Button from "../Button";
 import Input from "../Input";
-
 import { validateForm } from "./validationHelper/validateForm";
 import React from "react";
 
@@ -27,7 +26,6 @@ class Form extends React.Component {
     };
 
     handleSubmit = (e) => {
-        // console.log(e);
         e.preventDefault();
 
         const { onCreateTodo } = this.props;
