@@ -4,7 +4,7 @@ export const lightTheme = {
     },
     backgroundColor: {
         main: "white",
-        item: "white",
+        item: "#d0d0d5",
     },
     button: {
         backgroundColor: "white",
