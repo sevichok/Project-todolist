@@ -2,7 +2,6 @@ import Button from "../Button";
 import Input from "../Input";
 import styled from "styled-components";
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
-import store from "../../store";
 import { useDispatch } from "react-redux";
 import { filterAll, filterDone, filterDeleted, filterValue } from "../../store/TodoList";
 
@@ -31,25 +30,16 @@ const Filter = () => {
 
     const onDoneStatus = (id) => {
         dispatch(filterDone(id));
-        console.log(filterDone(id))
-        console.log(store.getState());
     }
     const onAllStatus = (id) => {
         dispatch(filterAll(id));
-        console.log(filterAll(id))
-        console.log(store.getState());
     }
     const onDeletedStatus = (id) => {
         dispatch(filterDeleted(id));
-        console.log(filterDeleted(id))
-        console.log(store.getState());
     }
 
     const handleFilterChange = (e) => {
-        console.log(e.target.value);
         dispatch(filterValue(e.target.value));
-        console.log(filterValue(e.target.value))
-        console.log(store.getState());
     };
 
     return (<FilterContainer>

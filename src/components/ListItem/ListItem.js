@@ -33,19 +33,16 @@ console.log("INITIAL STATE", store.getState());
 const ListItem = ({ title, id, completed }) => {
 
     const [showEditInput, setShowEditInput] = useState(false);
+    
     const { trans } = useLocales();
     const dispatch = useDispatch();
 
     const handleDelete = () => {
         dispatch(deleteTodo(id));
-        console.log(deleteTodo(id));
-        console.log(store.getState(id));
     };
 
     const handleDone = () => {
         dispatch(doneTodo(id));
-        console.log(doneTodo(id));
-        console.log(store.getState());
     };
 
     const handleEditOpen = () => {

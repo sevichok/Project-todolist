@@ -47,8 +47,6 @@ export const TodoListReducer = (state = initialState, action) => {
                 ),
             };
         case UPDATE_TODO:
-            console.log(action.payload.title )
-            console.log(action.payload.id)
             return {
                 ...state,
                 todoList: state.todoList.map((todoItem) =>
