@@ -18,7 +18,6 @@ const UlContainer = styled('ul')`
 `;
 
 const List = () => {
-    // const { todoList } = useSelector(getSlice);
     const filteredList = useSelector(getFilteredTodoList);
 
     const todoItems = filteredList?.map((TodoItem) =>

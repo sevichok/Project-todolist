@@ -1,14 +1,13 @@
+import React, { useState, useCallback } from "react";
+import styled from "styled-components";
+
 import Button from "../Button";
 import Input from "../Input";
-import styled from "styled-components";
+
 import { useLocales } from "../providers/LocalesProvider/LocalesProvider";
-
-// import { validateForm } from "./validationHelper/validateForm";
-import React, { useState, useCallback } from "react";
-
+import { validateForm } from "./validationHelper/validateForm";
 import { createTodo } from "../../store/TodoList";
 import { useDispatch } from "react-redux";
-import store from "../../store";
 
 const FormContainer = styled("div")`
     background-color: ${(props) => props.theme.backgroundColor.item};
@@ -28,19 +27,29 @@ const FormButtonsContainer = styled("div")`
 const Form = () => {
     const { trans } = useLocales();
     const dispatch = useDispatch();
+
     const [value, setValue] = useState("");
+    const [error, setError] = useState(validateForm(" "));
+    const [touched, setTouched] = useState(false);
 
     const handleChange = useCallback((e) => {
         setValue(e.target.value);
+        setError(validateForm(e.target.value));
     }, []);
 
     const handleCreate = (e) => {
         e.preventDefault();
 
-        dispatch(createTodo(value));
-        console.log(createTodo(value));
-        setValue('');
-        console.log(store.getState());
+        if (error && !touched) {
+            setTouched(true);
+            return;
+        }
+        if (!error) {
+            dispatch(createTodo(value));
+            setValue('');
+            setTouched(false);
+            setError(validateForm(""));
+        }
     };
 
     return (
@@ -49,6 +58,8 @@ const Form = () => {
                 value={value}
                 label={trans.newEditName}
                 onChange={handleChange}
+                error={Boolean((touched && error))}
+                description={(touched && error)}
             />
             <FormButtonsContainer>
                 <Button

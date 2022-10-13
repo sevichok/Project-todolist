@@ -8,8 +8,6 @@ import { FILTER_DONE } from "./TodoList.actions";
 import { FILTER_DELETED } from "./TodoList.actions";
 import { FILTER_VALUE } from "./TodoList.actions";
 
-// let listForLocalStorage = JSON.parse(localStorage.getItem("active-list") || "[]");
-// let listDeletedForLocalStorage = JSON.parse(localStorage.getItem("deleted-list") || "[]");
 
 export const initialState = {
     todoList: [],
